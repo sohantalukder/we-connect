@@ -1,7 +1,8 @@
 export const fonts = {
-  sourceSans3400: 'SourceSans3-Regular',
-  sourceSans3600: 'SourceSans3-SemiBold',
-  sourceSans3700: 'SourceSans3-Bold',
+  urbanist400: 'Urbanist-Regular',
+  urbanist500: 'Urbanist-Medium',
+  urbanist600: 'Urbanist-SemiBold',
+  urbanist700: 'Urbanist-Bold',
 };
 type FontWeightType =
   | 'normal'
@@ -19,11 +20,13 @@ type FontWeightType =
 
 interface fwsObject {
   font400: FontWeightType;
+  font500: FontWeightType;
   font600: FontWeightType;
   font700: FontWeightType;
 }
 export const fws: fwsObject = {
   font400: '400',
+  font500: '500',
   font600: '600',
   font700: '700',
 };
