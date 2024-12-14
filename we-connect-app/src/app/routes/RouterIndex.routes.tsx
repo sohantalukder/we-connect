@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {screens} from '@routes/routeName.routes';
-import basicRoutes from '@routes/modules/basic.routes';
+import {screens} from './routeName.routes';
+import basicRoutes from './modules/basic.routes';
 import {RouteProps} from '@entity-models/common.types';
 
 const RouterIndex = () => {

@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import rs from '@styles/responsiveSize.style.asset';
 import {typographies} from './typographies.style.asset';
-import {Colors} from './colors.style.asset';
+import {Colors} from '@styles/colors.style.asset';
 
 export const globalStyles = StyleSheet.create({
   relativeContainer: {flex: 1, position: 'relative'},

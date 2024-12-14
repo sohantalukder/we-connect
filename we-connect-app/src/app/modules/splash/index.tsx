@@ -1,11 +1,12 @@
-import {View, Text} from 'react-native';
+import {Text} from 'react-native';
 import React from 'react';
+import SplashContainer from '@layouts/SplashContainer.layout';
 
-const SplashIndex = () => {
+const SplashIndex: React.FC = () => {
   return (
-    <View>
+    <SplashContainer>
       <Text>SplashIndex</Text>
-    </View>
+    </SplashContainer>
   );
 };
 

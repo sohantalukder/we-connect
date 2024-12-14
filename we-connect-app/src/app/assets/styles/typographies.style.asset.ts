@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {fonts} from '@styles/fonts.style.asset';
-import {Colors} from './colors.style.asset';
+import {Colors} from '@styles/colors.style.asset';
 const lineHeight = (size: number, percentage: number) => {
   return size * (percentage / 100);
 };
