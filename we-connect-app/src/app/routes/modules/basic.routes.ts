@@ -1,6 +1,6 @@
-import {screens} from '../routeName.routes';
-import {RouteProps} from '../../types/common.types';
-import SplashIndex from '../../modules/splash';
+import {screens} from '@routes/routeName.routes';
+import {RouteProps} from '@entity-models/common.types';
+import SplashIndex from '@modules/splash';
 
 const basicRoutes: Array<RouteProps> = [
   {

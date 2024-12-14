@@ -1,7 +1,8 @@
 /* routes */
+/* routes */
 interface RouteProps {
   name: string;
-  component: _functionalElementReturn;
+  component: any;
   title?: string;
   isLazy?: boolean;
   isHide: boolean;

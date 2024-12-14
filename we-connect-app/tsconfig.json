@@ -42,7 +42,9 @@
       // States: All redux states for application (e.g.: caching data etc.)
       "@states/*": ["src/app/states/*"],
       // Types: All commonly used types for application (e.g.: interfaces, enums etc.)
-      "@types/*": ["src/app/types/*"]
+      "@entity-models/*": ["src/app/entity-models/*"],
+      // Utils: All utility functions for application (e.g.: date, time, etc.)
+      "@/*": ["src/*"] // Root path
     }
   }
 }

@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
-import rs from './responsiveSize.style.asset';
+import rs from '@styles/responsiveSize.style.asset';
 import {typographies} from './typographies.style.asset';
-import colors from './colors.style.asset';
+import {Colors} from './colors.style.asset';
 
 export const globalStyles = StyleSheet.create({
   relativeContainer: {flex: 1, position: 'relative'},
@@ -10,7 +10,7 @@ export const globalStyles = StyleSheet.create({
   activityCenter: {
     flexGrow: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   flexShrink1: {flexShrink: 1},
   flexGrow1: {flexGrow: 1},
@@ -19,12 +19,12 @@ export const globalStyles = StyleSheet.create({
     flexDirection: 'row',
     gap: 10,
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   rowBetweenWithoutFlex: {
     flexDirection: 'row',
     gap: 10,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   gap2: {gap: 2},
   rotate90: {transform: [{rotate: '90deg'}]},
@@ -38,33 +38,38 @@ export const globalStyles = StyleSheet.create({
   heightHalf: {height: '50%'},
   heightFull: {height: '100%'},
   alignJustifyCenter: {alignItems: 'center', justifyContent: 'center'},
-  shadow: {
-    shadowColor: colors.pink,
+});
+export const shadow = (colors: Colors) => {
+  return {
+    shadowColor: colors.gray2Opacity2,
     shadowOffset: {
       width: 0,
-      height: 5
+      height: 5,
     },
     shadowOpacity: 0.25,
     shadowRadius: 2.62,
     elevation: 5,
     backgroundColor: colors.white,
-    borderRadius: 16
-  },
-  noOptions: {
-    padding: 12,
-    ...typographies.bodyMedium,
-    flexGrow: 1,
-    textAlign: 'center',
-    color: colors.white
-  }
-});
-
+    borderRadius: 16,
+  };
+};
+export const noOptions = (colors: Colors) => {
+  return {
+    noOptions: {
+      padding: 12,
+      ...typographies(colors).bodyMediumMedium,
+      flexGrow: 1,
+      textAlign: 'center',
+      color: colors.white,
+    },
+  };
+};
 export const customPadding = (top = 0, right = 0, bottom = 0, left = 0) => {
   return {
     paddingTop: rs(top),
     paddingRight: rs(right),
     paddingBottom: rs(bottom),
-    paddingLeft: rs(left)
+    paddingLeft: rs(left),
   };
 };
 export const customMargin = (top = 0, right = 0, bottom = 0, left = 0) => {
@@ -72,25 +77,25 @@ export const customMargin = (top = 0, right = 0, bottom = 0, left = 0) => {
     marginTop: rs(top),
     marginRight: rs(right),
     marginBottom: rs(bottom),
-    marginLeft: rs(left)
+    marginLeft: rs(left),
   };
 };
 export const customBorderRadius = (
   topLeft = 0,
   topRight = 0,
   bottomRight = 0,
-  bottomLeft = 0
+  bottomLeft = 0,
 ) => {
   return {
     borderTopLeftRadius: topLeft,
     borderTopRightRadius: topRight,
     borderBottomRightRadius: bottomRight,
-    borderBottomLeftRadius: bottomLeft
+    borderBottomLeftRadius: bottomLeft,
   };
 };
 
 export const customGap = (gap: number = 0) => {
   return {
-    gap: rs(gap)
+    gap: rs(gap),
   };
 };
