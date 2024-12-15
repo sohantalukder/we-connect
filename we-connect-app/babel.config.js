@@ -26,19 +26,19 @@ module.exports = {
           '@images': './src/app/assets/images',
           '@styles': './src/app/assets/styles',
           // Components: All common components (e.g.: Button, Modal, etc.)
-          '@components': 'src/app/components',
+          '@components': './src/app/components',
           // API: All API related files (e.g.: API calls, configurations, etc.)
-          '@api': 'src/app/controllers/api*',
+          '@api': './src/app/controllers/api',
           // Formatters: All Formatters related files (e.g.: Formatters etc.)
-          '@formatters': 'src/app/controllers/formatters',
+          '@formatters': './src/app/controllers/formatters',
           // Local-Data: All Local Data related files (e.g.: Data etc.)
-          '@localData': 'src/app/controllers/local-data',
+          '@localData': './src/app/controllers/local-data',
           // Local-Store: All Local store related files (e.g.: Local Store Data etc.)
-          '@localStore': 'src/app/controllers/local-store',
+          '@localStore': './src/app/controllers/local-store',
           // Models: All Local store related files (e.g.: Realm Models etc.)
-          '@models': 'src/app/controllers/models',
+          '@models': './src/app/controllers/models',
           // Validators: All validators files (e.g.: Login, sign-up etc.)
-          '@validators': 'src/app/controllers/validators',
+          '@validators': './src/app/controllers/validators',
           // Helper: Hooks and Utilities
           '@helper': './src/app/helper',
           // Layouts: Common layout for screens

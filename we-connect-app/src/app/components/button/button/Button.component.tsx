@@ -6,46 +6,44 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {_buttonProps} from '../types/interface';
-import {customTheme} from '../../../assets/styles/colors.style.asset';
 import {typographies} from '../../../assets/styles/typographies.style.asset';
 import rs from '../../../assets/styles/responsiveSize.style.asset';
-import {TouchableRipple} from 'react-native-paper';
+import {ButtonProps} from '../types/interface';
+import {useTheme} from '@react-navigation/native';
+import {Colors} from '@styles/colors.style.asset';
+import CustomRipple from '../ripple/CustomRipple.c';
 
-const Button: React.FC<_buttonProps> = ({
+const Button: React.FC<ButtonProps> = ({
   text = '',
-  borderRadius = 4,
+  borderRadius = 16,
   bgColor,
-  style = {},
   textColor,
   textStyle = {},
   onPress,
   icon,
   isLoading,
   disabled,
-  rippleColor = 'rgba(1,1,1, 0.1)',
+  rippleColor,
   wrapStyle,
 }) => {
-  const styles = buttonStyles(
-    borderRadius,
-    bgColor || customTheme.colors.primary,
-    icon,
-  );
+  const colors = useTheme().colors as Colors;
+  const styles = buttonStyles(borderRadius, bgColor || colors.primary, icon);
   return (
-    <TouchableRipple
+    <CustomRipple
       onPress={onPress}
-      rippleColor={rippleColor}
-      disabled={disabled || isLoading}
-      style={style}>
+      color={bgColor || colors.primary}
+      disabled={disabled}
+      borderRadius={borderRadius}
+      rippleColor={rippleColor}>
       <View style={[styles.container, wrapStyle]}>
         {icon}
         {isLoading ? (
-          <ActivityIndicator color={customTheme.colors.pureWhite} />
+          <ActivityIndicator color={colors.white} />
         ) : (
           <Text
             style={[
-              typographies.labelLarge,
-              {color: textColor || customTheme.colors.text_dark},
+              typographies(colors).bodyLargeBold,
+              {color: textColor || colors.default1},
               textStyle,
             ]}
             numberOfLines={1}>
@@ -53,7 +51,7 @@ const Button: React.FC<_buttonProps> = ({
           </Text>
         )}
       </View>
-    </TouchableRipple>
+    </CustomRipple>
   );
 };
 
@@ -65,9 +63,9 @@ const buttonStyles = (borderRadius: number, bgColor: ColorValue, icon: any) =>
       borderRadius,
       backgroundColor: bgColor,
       flexShrink: 1,
-      paddingVertical: rs(10),
       alignItems: 'center',
       justifyContent: 'center',
+      height: rs(58),
       flexDirection: 'row',
       gap: icon ? rs(10) : 0,
     },

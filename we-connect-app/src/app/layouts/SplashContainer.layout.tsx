@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {ColorValue, StyleSheet, View} from 'react-native';
 import {globalStyles} from '@styles/global.style.asset';
 import {Colors} from '@styles/colors.style.asset';
 import {useTheme} from '@react-navigation/native';
@@ -27,7 +27,7 @@ const SplashContainer: React.FC<SplashContainerProps> = ({
 };
 export default SplashContainer;
 
-const styles = (bgColor: string) =>
+const styles = (bgColor: ColorValue) =>
   StyleSheet.create({
     container: {
       backgroundColor: bgColor,

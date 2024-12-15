@@ -3,40 +3,43 @@ import {
   DefaultTheme,
   Theme as NativeTheme,
 } from '@react-navigation/native';
+import {ColorValue} from 'react-native';
 
 type ColorMode = 'light' | 'dark';
 interface Colors {
-  primary: string;
-  secondary: string;
-  badgeColor: string;
-  black: string;
-  white: string;
-  transparent: string;
-  default: string;
-  whiteOpacity: string;
-  gray0: string;
-  gray1: string;
-  gray2: string;
-  gray3: string;
-  gray4: string;
-  gray5: string;
-  gray6: string;
-  gray7: string;
-  gray8: string;
-  gray9: string;
-  background: string;
-  success1: string;
-  success2: string;
-  success3: string;
-  error1: string;
-  error2: string;
-  error3: string;
-  info1: string;
-  gray2Opacity2: string;
-  card: string;
-  text: string;
-  border: string;
-  notification: string;
+  primary: ColorValue;
+  secondary: ColorValue;
+  badgeColor: ColorValue;
+  black: ColorValue;
+  white: ColorValue;
+  transparent: ColorValue;
+  default: ColorValue;
+  default1: ColorValue;
+  whiteOpacity: ColorValue;
+  gray0: ColorValue;
+  gray1: ColorValue;
+  gray2: ColorValue;
+  gray3: ColorValue;
+  gray4: ColorValue;
+  gray5: ColorValue;
+  gray6: ColorValue;
+  gray7: ColorValue;
+  gray8: ColorValue;
+  gray9: ColorValue;
+  background: ColorValue;
+  success1: ColorValue;
+  success2: ColorValue;
+  success3: ColorValue;
+  error1: ColorValue;
+  error2: ColorValue;
+  error3: ColorValue;
+  info1: ColorValue;
+  gray2Opacity2: ColorValue;
+  card: ColorValue;
+  text: ColorValue;
+  border: ColorValue;
+  notification: ColorValue;
+  rippleColor: ColorValue;
 }
 
 interface ThemeColors extends Omit<NativeTheme, 'colors'> {
@@ -53,6 +56,7 @@ const appColors: Record<ColorMode, ThemeColors> = {
       black: '#000000',
       white: '#ffffff',
       default: '#FFFFFF',
+      default1: '#000000',
       transparent: 'transparent',
       whiteOpacity: '#FF573300',
       gray0: '#1B1D20',
@@ -78,6 +82,7 @@ const appColors: Record<ColorMode, ThemeColors> = {
       text: '#FFFFFF',
       border: '#FFFFFF',
       notification: '#FFFFFF',
+      rippleColor: '#000000',
     },
   },
   dark: {
@@ -89,6 +94,7 @@ const appColors: Record<ColorMode, ThemeColors> = {
       black: '#000000',
       white: '#FFFFFF',
       default: '#000000',
+      default1: '#FFFFFF',
       transparent: 'transparent',
       whiteOpacity: '#252525',
       gray0: '#F4F4F4',
@@ -114,6 +120,7 @@ const appColors: Record<ColorMode, ThemeColors> = {
       text: '#000000',
       border: '#000000',
       notification: '#000000',
+      rippleColor: '#FFFFFF',
     },
   },
 };

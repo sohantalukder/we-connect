@@ -1,8 +1,8 @@
+import {IconProps} from '@entity-models/iconProps.types';
 import {ReactElement} from 'react';
 import {TextStyle, StyleProp, ViewStyle, ColorValue} from 'react-native';
-import {_iconProps} from '../../../types/icons.types';
 
-interface _buttonProps {
+interface ButtonProps {
   text: string;
   bgColor?: ColorValue;
   style?: StyleProp<ViewStyle>;
@@ -11,12 +11,12 @@ interface _buttonProps {
   textColor?: ColorValue;
   textStyle?: StyleProp<TextStyle>;
   onPress?: () => void;
-  icon?: ReactElement<_iconProps>;
+  icon?: ReactElement<IconProps>;
   isLoading?: boolean;
   disabled?: boolean;
   rippleColor?: ColorValue;
 }
-interface _gradientButton {
+interface GradientButtonProps {
   text: string;
   gradient?: string[];
   style?: StyleProp<ViewStyle>;
@@ -24,12 +24,12 @@ interface _gradientButton {
   textColor?: string;
   textStyle?: StyleProp<TextStyle>;
   onPress?: () => void;
-  icon?: ReactElement<_iconProps>;
+  icon?: ReactElement<IconProps>;
   isLoading?: boolean;
   disabled?: boolean;
 }
-interface _iconButton {
-  icon: ReactElement<_iconProps>;
+interface IconButtonProps {
+  icon: ReactElement<IconProps>;
   onPress?: () => void;
   bgColor?: string;
   borderColor?: string;
@@ -37,5 +37,22 @@ interface _iconButton {
   disabled?: boolean;
   rippleColor?: ColorValue;
 }
+interface RippleButtonProps {
+  children: React.ReactElement;
+  color: ColorValue;
+  borderRadius?: number;
+  onPress?: () => void;
+  rippleScale?: number;
+  duration?: number;
+  overflow?: boolean;
+  rippleColor?: ColorValue;
+  rippleOpacity?: number;
+  disabled?: boolean;
+}
 
-export type {_buttonProps, _gradientButton, _iconButton};
+export type {
+  ButtonProps,
+  RippleButtonProps,
+  GradientButtonProps,
+  IconButtonProps,
+};
