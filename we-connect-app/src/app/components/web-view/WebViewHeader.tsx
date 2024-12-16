@@ -12,7 +12,7 @@ import {typographies} from '../../assets/styles/typographies.style.asset';
 import rs from '../../assets/styles/responsiveSize.style.asset';
 import {customTheme} from '../../assets/styles/colors.style.asset';
 import ProgressBar from '../progress-bar/ProgressBar';
-import LockIcon from '../../assets/icons/Lock.icon.asset';
+import LockIcon from '../../assets/icons/Lock.icon';
 import OpenTabIcon from '../../assets/icons/OpenTab.icon.asset';
 
 const WebViewHeader = ({title = '', loading = 0, url = ''}) => {
