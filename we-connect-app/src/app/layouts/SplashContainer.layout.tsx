@@ -1,5 +1,5 @@
 import React from 'react';
-import {ColorValue, StyleSheet, View} from 'react-native';
+import {ColorValue, StyleSheet, View, useColorScheme} from 'react-native';
 import {globalStyles} from '@styles/global.style.asset';
 import {Colors} from '@styles/colors.style.asset';
 import {useTheme} from '@react-navigation/native';
@@ -12,12 +12,15 @@ const SplashContainer: React.FC<SplashContainerProps> = ({
   barStyle,
 }) => {
   const colors = useTheme().colors as Colors;
+  const scheme = useColorScheme();
   return (
     <View style={globalStyles.flex1}>
       <CustomStatusBar
         bgColor={colors.transparent}
         showHeader={false}
-        barStyle={barStyle ?? 'light-content'}
+        barStyle={
+          barStyle || scheme === 'dark' ? 'light-content' : 'dark-content'
+        }
       />
       <View style={[styles(colors.default).container, containerStyle]}>
         {children}

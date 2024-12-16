@@ -1,9 +1,9 @@
-import {Colors} from '@styles/colors.style.asset';
+import {ColorValue} from 'react-native';
 
 interface IconProps {
   width?: number;
   height?: number;
-  fill?: Colors;
+  fill?: ColorValue;
 }
 
 export type {IconProps};

@@ -88,7 +88,7 @@ const appColors: Record<ColorMode, ThemeColors> = {
   dark: {
     ...DarkTheme,
     colors: {
-      primary: '#004BB5',
+      primary: '#006DF5',
       secondary: '#2C2C2C',
       badgeColor: '#9F1210',
       black: '#000000',
