@@ -18,8 +18,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
   style = {},
 }) => {
   const colors = useTheme().colors as Colors;
-  const styles = inputStyles(rightIcon, leftIcon, colors);
-  const containerRef = useRef<any>(null);
+  const styles = inputStyles({rightIcon, leftIcon, colors});
+  const containerRef = useRef<TextInput>(null);
   const handleOnChange = (text: string) => {
     if (name && name?.trim() !== '') {
       onChangeText(text, name, validationRules);
@@ -28,12 +28,12 @@ const CustomInput: React.FC<CustomInputProps> = ({
     }
   };
   const handleOnFocus = () => {
-    containerRef.current.setNativeProps({
+    containerRef.current?.setNativeProps({
       style: {...styles.activeContainer},
     });
   };
   const handleOnBlur = () => {
-    containerRef.current.setNativeProps({
+    containerRef.current?.setNativeProps({
       style: {...styles.container},
     });
   };

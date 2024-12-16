@@ -35,6 +35,7 @@ export const globalStyles = StyleSheet.create({
   gap4: {gap: 4},
   widthHalf: {width: '50%'},
   heightHalf: {height: '50%'},
+  widthFull: {width: '100%'},
   heightFull: {height: '100%'},
   alignJustifyCenter: {alignItems: 'center', justifyContent: 'center'},
 });

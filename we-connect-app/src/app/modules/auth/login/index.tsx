@@ -1,4 +1,3 @@
-import {View, Text} from 'react-native';
 import React from 'react';
 import Container from '@layouts/Container.layout';
 import PhoneNumberInput from '@components/phone-number-input/PhoneNumberInput.c';
@@ -14,7 +13,7 @@ const LoginIndex: React.FC<Props> = ({
   console.log(type);
   return (
     <Container>
-      <PhoneNumberInput />
+      <PhoneNumberInput onChangeText={() => {}} />
       <CustomInput onChangeText={() => {}} />
     </Container>
   );

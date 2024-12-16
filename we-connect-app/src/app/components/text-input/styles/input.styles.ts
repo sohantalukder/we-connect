@@ -1,14 +1,19 @@
+import {IconProps} from '@entity-models/iconProps.types';
 import {Colors} from '@styles/colors.style.asset';
 import {fonts} from '@styles/fonts.style.asset';
 import {customPadding} from '@styles/global.style.asset';
 import {ReactElement} from 'react';
 import {StyleSheet} from 'react-native';
 
-export const inputStyles = (
-  rightIcon: ReactElement | null | boolean,
-  leftIcon: ReactElement | null | boolean,
-  colors: Colors,
-) =>
+export const inputStyles = ({
+  leftIcon,
+  rightIcon,
+  colors,
+}: {
+  rightIcon?: ReactElement<IconProps>;
+  leftIcon?: ReactElement<IconProps>;
+  colors: Colors;
+}) =>
   StyleSheet.create({
     container: {
       gap: 12,
@@ -23,7 +28,9 @@ export const inputStyles = (
     },
     activeContainer: {
       borderColor: colors.primary,
-      backgroundColor: colors.transparent,
+    },
+    errorContainer: {
+      borderColor: colors.error1,
     },
     leftIcon: {
       position: 'absolute',
@@ -31,12 +38,18 @@ export const inputStyles = (
     },
     input: {
       color: colors.default1,
-      fontSize: 14,
+      fontSize: 16,
       fontFamily: fonts.urbanist600,
       paddingVertical: 18,
       paddingRight: rightIcon ? 12 : 0,
       paddingLeft: leftIcon ? 8 : 0,
       flex: 1,
+      textAlignVertical: 'center',
+    },
+    phoneInput: {
+      color: colors.default1,
+      fontSize: 16,
+      fontFamily: fonts.urbanist600,
       textAlignVertical: 'center',
     },
   });

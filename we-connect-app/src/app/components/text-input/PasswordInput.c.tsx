@@ -43,7 +43,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   returnKeyType = 'done',
 }: PasswordInputProps) => {
   const colors = useTheme().colors as Colors;
-  const styles = inputStyles(true, true, colors);
+  const styles = inputStyles({rightIcon: <></>, leftIcon: <></>, colors});
   const [isShowPass, setIsShowPass] = useState(false);
   const containerRef = useRef<any>(null);
   const handleOnFocus = () => {
