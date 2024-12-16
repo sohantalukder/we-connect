@@ -5,7 +5,6 @@ import {TextStyle, StyleProp, ViewStyle, ColorValue} from 'react-native';
 interface ButtonProps {
   text: string;
   bgColor?: ColorValue;
-  style?: StyleProp<ViewStyle>;
   wrapStyle?: StyleProp<ViewStyle>;
   borderRadius?: number;
   textColor?: ColorValue;
@@ -15,6 +14,9 @@ interface ButtonProps {
   isLoading?: boolean;
   disabled?: boolean;
   rippleColor?: ColorValue;
+  variant?: 'primary' | 'secondary' | 'disable' | 'error' | 'outline';
+  iconPosition?: 'left' | 'right';
+  activityColor?: ColorValue;
 }
 interface GradientButtonProps {
   text: string;
@@ -39,7 +41,6 @@ interface IconButtonProps {
 }
 interface RippleButtonProps {
   children: React.ReactElement;
-  color: ColorValue;
   borderRadius?: number;
   onPress?: () => void;
   rippleScale?: number;

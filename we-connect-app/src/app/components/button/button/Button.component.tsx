@@ -19,45 +19,65 @@ const Button: React.FC<ButtonProps> = ({
   bgColor,
   textColor,
   textStyle = {},
-  onPress,
+  onPress = () => {},
   icon,
   isLoading,
   disabled,
   rippleColor,
   wrapStyle,
+  iconPosition = 'left',
+  variant = 'primary',
+  activityColor,
 }) => {
   const colors = useTheme().colors as Colors;
-  const styles = buttonStyles(borderRadius, bgColor || colors.primary, icon);
-  return (
-    <CustomRipple
-      onPress={onPress}
-      color={bgColor || colors.primary}
-      disabled={disabled}
-      borderRadius={borderRadius}
-      rippleColor={rippleColor}>
-      <View style={[styles.container, wrapStyle]}>
-        {icon}
-        {isLoading ? (
-          <ActivityIndicator color={colors.white} />
-        ) : (
+  const styles = buttonStyles(borderRadius, bgColor || colors.primary, colors);
+  const handlePress = () => {
+    if (!isLoading) {
+      onPress();
+    }
+  };
+  const renderButton = () => {
+    return (
+      <View style={styles.iconGap}>
+        {iconPosition === 'left' && icon}
+        {text && (
           <Text
             style={[
               typographies(colors).bodyLargeBold,
-              {color: textColor || colors.default1},
+              {color: textColor || styles[variant].color || colors.default},
               textStyle,
             ]}
             numberOfLines={1}>
             {text}
           </Text>
         )}
+        {iconPosition === 'right' && icon}
+      </View>
+    );
+  };
+  return (
+    <CustomRipple
+      onPress={handlePress}
+      disabled={disabled}
+      borderRadius={borderRadius}
+      rippleColor={rippleColor}>
+      <View style={[styles.container, styles[variant], wrapStyle]}>
+        {isLoading ? (
+          <ActivityIndicator color={activityColor || colors.default} />
+        ) : (
+          renderButton()
+        )}
       </View>
     </CustomRipple>
   );
 };
-
 export default Button;
 
-const buttonStyles = (borderRadius: number, bgColor: ColorValue, icon: any) =>
+const buttonStyles = (
+  borderRadius: number,
+  bgColor: ColorValue,
+  colors: Colors,
+) =>
   StyleSheet.create({
     container: {
       borderRadius,
@@ -67,6 +87,28 @@ const buttonStyles = (borderRadius: number, bgColor: ColorValue, icon: any) =>
       justifyContent: 'center',
       height: rs(58),
       flexDirection: 'row',
-      gap: icon ? rs(10) : 0,
+    },
+    iconGap: {flexDirection: 'row', gap: 10},
+    primary: {
+      backgroundColor: colors.primary,
+      color: colors.white,
+    },
+    secondary: {
+      backgroundColor: colors.secondary,
+      color: colors.gray0,
+    },
+    disable: {
+      backgroundColor: colors.gray9,
+      color: colors.gray6,
+    },
+    error: {
+      backgroundColor: colors.error1,
+      color: colors.white,
+    },
+    outline: {
+      backgroundColor: colors.transparent,
+      color: colors.default1,
+      borderWidth: 1,
+      borderColor: colors.gray7,
     },
   });

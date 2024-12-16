@@ -1,8 +1,8 @@
 import React, {useLayoutEffect, useRef, useState} from 'react';
 import SplashContainer from '@layouts/SplashContainer.layout';
 import {customPadding} from '@styles/global.style.asset';
-import LogoBG from '../../assets/icons/LogoBG.icon';
-import Logo from '../../assets/icons/Logo.icon';
+import LogoBG from '@icons/LogoBG.icon';
+import Logo from '@icons/Logo.icon';
 import {
   Easing,
   Animated as ReactAnimated,
@@ -10,7 +10,9 @@ import {
   View,
 } from 'react-native';
 import rs from '@styles/responsiveSize.style.asset';
-import Loader from '../../assets/icons/Loader.icon';
+import Loader from '@icons/Loader.icon';
+import {useNavigation} from '@react-navigation/native';
+import {screens} from '@routes/routeName.routes';
 
 const SplashLogo: React.FC = () => {
   const [isAnimating, setIsAnimating] = useState(true);
@@ -103,6 +105,12 @@ const SplashLoader = () => {
   );
 };
 const SplashIndex: React.FC = () => {
+  const navigation = useNavigation();
+  useLayoutEffect(() => {
+    setTimeout(() => {
+      navigation.navigate(screens.letsIn as never);
+    }, 3000);
+  }, [navigation]);
   return (
     <SplashContainer containerStyle={{...customPadding(0, 20, 0, 20)}}>
       <SplashLogo />

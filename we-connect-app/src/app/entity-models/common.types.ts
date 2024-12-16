@@ -2,7 +2,7 @@
 /* routes */
 interface RouteProps {
   name: string;
-  component: any;
+  component: React.FC;
   title?: string;
   isLazy?: boolean;
   isHide: boolean;

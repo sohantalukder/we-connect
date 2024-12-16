@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, useColorScheme} from 'react-native';
 import {globalStyles} from '@styles/global.style.asset';
 import {statusBar} from '@styles/properties.asset';
 import {ContainerProps} from '@layouts/interface';
@@ -13,16 +13,21 @@ const Container: React.FC<ContainerProps> = ({
   bg,
   showHeader = true,
   statusBarBg,
-  statusBarStyle = statusBar.lightContent,
+  statusBarStyle,
   ph = 0,
 }) => {
   const colors = useTheme().colors as Colors;
+  const colorScheme = useColorScheme();
   return (
     <View style={globalStyles.flex1}>
       <CustomStatusBar
         bgColor={statusBarBg || colors.default}
         showHeader={showHeader}
-        barStyle={statusBarStyle}
+        barStyle={
+          statusBarStyle || colorScheme === 'dark'
+            ? statusBar.lightContent
+            : statusBar.darkContent
+        }
       />
       <View
         style={[styles(bg || colors.background, ph).container, containerStyle]}>

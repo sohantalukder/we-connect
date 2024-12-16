@@ -33,28 +33,25 @@ export const globalStyles = StyleSheet.create({
   flexRow: {flexDirection: 'row', alignItems: 'center', gap: rs(10)},
   gap8: {gap: 8},
   gap4: {gap: 4},
-  widthFull: {width: '100%'},
   widthHalf: {width: '50%'},
   heightHalf: {height: '50%'},
   heightFull: {height: '100%'},
   alignJustifyCenter: {alignItems: 'center', justifyContent: 'center'},
 });
-export const shadow = (colors: Colors) => {
-  return {
-    shadowColor: colors.gray2Opacity2,
-    shadowOffset: {
-      width: 0,
-      height: 5,
+export const themedGlobalStyles = (colors: Colors) =>
+  StyleSheet.create({
+    shadow: {
+      shadowColor: colors.gray2Opacity2,
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 2.62,
+      elevation: 5,
+      backgroundColor: colors.white,
+      borderRadius: 16,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 2.62,
-    elevation: 5,
-    backgroundColor: colors.white,
-    borderRadius: 16,
-  };
-};
-export const noOptions = (colors: Colors) => {
-  return {
     noOptions: {
       padding: 12,
       ...typographies(colors).bodyMediumMedium,
@@ -62,8 +59,13 @@ export const noOptions = (colors: Colors) => {
       textAlign: 'center',
       color: colors.white,
     },
-  };
-};
+    divider: {
+      height: 1,
+      backgroundColor: colors.gray7,
+      width: '100%',
+    },
+  });
+
 export const customPadding = (top = 0, right = 0, bottom = 0, left = 0) => {
   return {
     paddingTop: rs(top),

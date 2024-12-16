@@ -25,6 +25,7 @@ module.exports = {
           '@icons': './src/app/assets/icons',
           '@images': './src/app/assets/images',
           '@styles': './src/app/assets/styles',
+          '@illustrations': './src/app/assets/illustrations',
           // Components: All common components (e.g.: Button, Modal, etc.)
           '@components': './src/app/components',
           // API: All API related files (e.g.: API calls, configurations, etc.)

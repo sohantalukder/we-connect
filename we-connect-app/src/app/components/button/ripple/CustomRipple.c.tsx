@@ -16,7 +16,6 @@ type ValueOf<T> = T[keyof T];
 
 const RippleButton: React.FC<RippleButtonProps> = ({
   children,
-  color,
   borderRadius,
   onPress = () => {},
   rippleScale = 1,
@@ -48,7 +47,6 @@ const RippleButton: React.FC<RippleButtonProps> = ({
   );
   const styles = rippleStyles(
     rippleColor || colors.rippleColor,
-    color,
     radius,
     rippleOpacity,
     borderRadius || 0,
@@ -112,7 +110,6 @@ export default RippleButton;
 
 const rippleStyles = (
   rippleColor: ColorValue,
-  color: ColorValue,
   radius: number,
   rippleOpacity: number,
   borderRadius: number,
@@ -122,7 +119,6 @@ const rippleStyles = (
     container: {
       ...StyleSheet.absoluteFillObject,
       borderRadius,
-      backgroundColor: color,
       overflow: !overflow ? 'hidden' : undefined,
     },
     button: {
