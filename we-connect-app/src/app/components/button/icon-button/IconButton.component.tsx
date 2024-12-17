@@ -1,26 +1,30 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import rs from '../../../assets/styles/responsiveSize.style.asset';
-import {customTheme} from '../../../assets/styles/colors.style.asset';
-import {_iconButton} from '../types/interface';
-import {TouchableRipple} from 'react-native-paper';
+import RippleButton from '../ripple/CustomRipple.c';
+import {IconButtonProps} from '../types/interface';
+import {useTheme} from '@react-navigation/native';
+import {Colors} from '@styles/colors.style.asset';
 
-const IconButton: React.FC<_iconButton> = ({
+const IconButton: React.FC<IconButtonProps> = ({
   icon,
   onPress,
-  bgColor = customTheme.colors.elevation1,
+  bgColor,
   style,
   disabled,
 }) => {
+  const colors = useTheme().colors as Colors;
   return (
-    <TouchableRipple
-      disabled={disabled}
-      borderless
-      onPress={onPress}
-      rippleColor={'rgba(255, 255, 255, 0.2)'}
-      style={[styles.container, {backgroundColor: bgColor}, style]}>
-      {icon}
-    </TouchableRipple>
+    <RippleButton disabled={disabled} onPress={onPress}>
+      <View
+        style={[
+          styles.container,
+          {backgroundColor: bgColor || colors.transparent},
+          style,
+        ]}>
+        {icon}
+      </View>
+    </RippleButton>
   );
 };
 

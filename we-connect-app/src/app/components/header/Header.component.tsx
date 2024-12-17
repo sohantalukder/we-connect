@@ -1,7 +1,6 @@
 import React from 'react';
 import IconButton from '../button/icon-button/IconButton.component';
-import LeftArrowIcon from '../../assets/icons/LeftArrow.icon.asset';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useTheme} from '@react-navigation/native';
 import {
   StyleProp,
   StyleSheet,
@@ -15,8 +14,9 @@ import {
   globalStyles,
 } from '../../assets/styles/global.style.asset';
 import {typographies} from '../../assets/styles/typographies.style.asset';
-import {customTheme} from '../../assets/styles/colors.style.asset';
-import {_iconProps} from '../../types/icons.types';
+import LeftArrowIcon from '@icons/LeftArrow.icon.asset';
+import {IconProps} from '@entity-models/iconProps.types';
+import {Colors} from '@styles/colors.style.asset';
 interface _props {
   style?: StyleProp<ViewStyle>;
   rightComponent?: React.ReactElement;
@@ -26,7 +26,7 @@ interface _props {
   iconFill?: string;
   leftControl?: () => void;
   showLeft?: boolean;
-  LeftIcon?: React.FC<_iconProps>;
+  LeftIcon?: React.FC<IconProps>;
 }
 const Header: React.FC<_props> = ({
   style,
@@ -34,11 +34,12 @@ const Header: React.FC<_props> = ({
   rightComponent,
   iconStyle,
   textStyle,
-  iconFill = customTheme.colors.white,
+  iconFill,
   leftControl,
   showLeft = true,
   LeftIcon = LeftArrowIcon,
 }) => {
+  const colors = useTheme().colors as Colors;
   const navigation = useNavigation();
   return (
     <View
@@ -51,7 +52,7 @@ const Header: React.FC<_props> = ({
       {showLeft && (
         <IconButton
           style={iconStyle}
-          icon={<LeftIcon fill={iconFill} />}
+          icon={<LeftIcon fill={iconFill || colors.default1} />}
           onPress={() =>
             leftControl
               ? leftControl()
@@ -61,7 +62,7 @@ const Header: React.FC<_props> = ({
           }
         />
       )}
-      {text && <Text style={[styles.text, textStyle]}>{text}</Text>}
+      {text && <Text style={[styles(colors).text, textStyle]}>{text}</Text>}
       <View>{rightComponent}</View>
     </View>
   );
@@ -69,14 +70,10 @@ const Header: React.FC<_props> = ({
 
 export default Header;
 
-const styles = StyleSheet.create({
-  text: {
-    ...typographies.titleLarge,
-    position: 'absolute',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    textAlign: 'center',
-    zIndex: -1,
-  },
-});
+const styles = (colors: Colors) =>
+  StyleSheet.create({
+    text: {
+      ...typographies(colors).heading4,
+      width: '100%',
+    },
+  });
