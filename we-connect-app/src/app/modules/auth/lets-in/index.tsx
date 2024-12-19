@@ -19,7 +19,7 @@ const LetsInIndex: React.FC = () => {
     <Container ph={20}>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{paddingTop: rs(20)}}>
+        contentContainerStyle={{paddingTop: rs(60)}}>
         <View style={globalStyles.alignJustifyCenter}>
           <LetsInIllustration />
         </View>
@@ -32,11 +32,6 @@ const LetsInIndex: React.FC = () => {
               key={index}
               icon={<option.Icon />}
               variant="outline"
-              onPress={() =>
-                index === 2
-                  ? navigation.navigate(screens.login as never, {type: 'email'})
-                  : {}
-              }
               text={option.text}
             />
           ))}
@@ -52,9 +47,7 @@ const LetsInIndex: React.FC = () => {
         </View>
         <Button
           wrapStyle={{marginVertical: rs(24)}}
-          onPress={() =>
-            navigation.navigate(screens.login as never, {type: 'phone'})
-          }
+          onPress={() => navigation.navigate(screens.login as never)}
           text="Sign in with Phone Number"
         />
         <Text

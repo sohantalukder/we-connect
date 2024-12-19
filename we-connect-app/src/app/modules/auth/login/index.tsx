@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import PhoneNumberInput from '@components/phone-number-input/PhoneNumberInput.c';
-import CustomInput from '@components/text-input/CustomInput.c';
 import Header from '@components/header/Header.component';
 import {
   KeyboardAvoidingView,
@@ -33,14 +32,8 @@ const RememberMe: React.FC<{colors: Colors}> = ({colors}) => {
     </Pressable>
   );
 };
-interface Props {
-  route: {params: {type: 'email' | 'phone'}};
-}
-const LoginIndex: React.FC<Props> = ({
-  route: {
-    params: {type},
-  },
-}) => {
+
+const LoginIndex: React.FC = () => {
   const colors = useTheme().colors as Colors;
   const navigation = useNavigation();
   return (
@@ -62,11 +55,7 @@ const LoginIndex: React.FC<Props> = ({
             ]}>
             Login to Your Account
           </Text>
-          {type === 'phone' ? (
-            <PhoneNumberInput onChangeText={() => {}} />
-          ) : (
-            <CustomInput placeholder="Email" onChangeText={() => {}} />
-          )}
+          <PhoneNumberInput onChangeText={() => {}} />
           <PasswordInput
             wrapperStyle={{...customPadding(16)}}
             placeholder="Password"
@@ -89,13 +78,16 @@ const LoginIndex: React.FC<Props> = ({
           </View>
           <Button text="Login" onPress={() => {}} />
           <Text
+            onPress={() => console.log('first')}
             style={[
               typographies(colors).bodyMediumRegular,
               {...customPadding(60, 0, 16, 0), color: colors.gray3},
             ]}>
             Don't have an account?{' '}
             <Text
-              onPress={() => navigation.navigate(screens.signUp as never)}
+              onPress={() =>
+                navigation.navigate(screens.forgotPassword as never)
+              }
               style={[
                 typographies(colors).bodyMediumSemibold,
                 {color: colors.primary},

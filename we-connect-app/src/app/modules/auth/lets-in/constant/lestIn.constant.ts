@@ -1,5 +1,4 @@
 import {IconProps} from '@entity-models/iconProps.types';
-import EmailIcon from '@icons/Email.icon';
 import FacebookIcon from '@icons/Facebook.icon';
 import GoogleIcon from '@icons/Google.icon';
 
@@ -15,10 +14,6 @@ const socialLoginOptions: socialLoginOptionsProps[] = [
   {
     Icon: GoogleIcon,
     text: 'Continue with Google',
-  },
-  {
-    Icon: EmailIcon,
-    text: 'Continue with Email',
   },
 ];
 
