@@ -12,6 +12,8 @@ export const globalStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  alignCenter: {alignItems: 'center'},
+  textAlignCenter: {textAlign: 'center'},
   flexShrink1: {flexShrink: 1},
   flexGrow1: {flexGrow: 1},
   emptyFlexBox: {flexGrow: 1},

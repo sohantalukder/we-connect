@@ -38,6 +38,7 @@ interface IconButtonProps {
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
   rippleColor?: ColorValue;
+  borderRadius?: number;
 }
 interface RippleButtonProps {
   children: React.ReactElement;

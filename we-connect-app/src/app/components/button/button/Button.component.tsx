@@ -86,6 +86,7 @@ const buttonStyles = (
       alignItems: 'center',
       justifyContent: 'center',
       height: rs(58),
+      width: '100%',
       flexDirection: 'row',
     },
     iconGap: {flexDirection: 'row', gap: 10},

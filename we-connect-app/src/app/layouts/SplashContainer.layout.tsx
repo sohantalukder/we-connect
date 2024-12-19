@@ -10,6 +10,7 @@ const SplashContainer: React.FC<SplashContainerProps> = ({
   children,
   containerStyle,
   barStyle,
+  showHeader = false,
 }) => {
   const colors = useTheme().colors as Colors;
   const scheme = useColorScheme();
@@ -17,7 +18,7 @@ const SplashContainer: React.FC<SplashContainerProps> = ({
     <View style={globalStyles.flex1}>
       <CustomStatusBar
         bgColor={colors.transparent}
-        showHeader={false}
+        showHeader={showHeader}
         barStyle={
           barStyle || scheme === 'dark' ? 'light-content' : 'dark-content'
         }

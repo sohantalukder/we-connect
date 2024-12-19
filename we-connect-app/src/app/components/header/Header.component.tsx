@@ -14,7 +14,7 @@ import {
   globalStyles,
 } from '../../assets/styles/global.style.asset';
 import {typographies} from '../../assets/styles/typographies.style.asset';
-import LeftArrowIcon from '@icons/LeftArrow.icon.asset';
+import LeftArrowIcon from '@icons/LeftArrow.icon';
 import {IconProps} from '@entity-models/iconProps.types';
 import {Colors} from '@styles/colors.style.asset';
 interface _props {
@@ -45,7 +45,7 @@ const Header: React.FC<_props> = ({
     <View
       style={[
         globalStyles.rowBetween,
-        {...customPadding(8, 8, 8, 8)},
+        {...customPadding(0, 18, 0, 18)},
         globalStyles.widthFull,
         style,
       ]}>
@@ -53,6 +53,7 @@ const Header: React.FC<_props> = ({
         <IconButton
           style={iconStyle}
           icon={<LeftIcon fill={iconFill || colors.default1} />}
+          borderRadius={50}
           onPress={() =>
             leftControl
               ? leftControl()
@@ -73,7 +74,8 @@ export default Header;
 const styles = (colors: Colors) =>
   StyleSheet.create({
     text: {
-      ...typographies(colors).heading4,
+      ...typographies(colors).heading5,
+      marginBottom: -3,
       width: '100%',
     },
   });

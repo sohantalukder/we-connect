@@ -12,14 +12,18 @@ const IconButton: React.FC<IconButtonProps> = ({
   bgColor,
   style,
   disabled,
+  borderRadius = rs(500),
 }) => {
   const colors = useTheme().colors as Colors;
   return (
-    <RippleButton disabled={disabled} onPress={onPress}>
+    <RippleButton
+      borderRadius={borderRadius}
+      disabled={disabled}
+      onPress={onPress}>
       <View
         style={[
           styles.container,
-          {backgroundColor: bgColor || colors.transparent},
+          {backgroundColor: bgColor || colors.transparent, borderRadius},
           style,
         ]}>
         {icon}
@@ -39,5 +43,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: 0,
+    backgroundColor: 'red',
   },
 });

@@ -18,5 +18,6 @@ interface SplashContainerProps {
   children: React.CElement;
   containerStyle?: StyleProp<ViewStyle>;
   barStyle?: statusBar;
+  showHeader?: boolean;
 }
 export type {ContainerProps, SplashContainerProps};

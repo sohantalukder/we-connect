@@ -34,7 +34,7 @@ const LetsInIndex: React.FC = () => {
               variant="outline"
               onPress={() =>
                 index === 2
-                  ? navigation.navigate(screens.login as never, {type: 'phone'})
+                  ? navigation.navigate(screens.login as never, {type: 'email'})
                   : {}
               }
               text={option.text}

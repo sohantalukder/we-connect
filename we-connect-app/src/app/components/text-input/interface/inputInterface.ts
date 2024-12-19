@@ -1,6 +1,6 @@
 import {IconProps} from '@entity-models/iconProps.types';
 import React from 'react';
-import {TextInputProps, StyleProp, ViewStyle} from 'react-native';
+import {TextInputProps, StyleProp, ViewStyle, TextStyle} from 'react-native';
 import {CountryCode} from './coutryCode';
 
 export interface HeaderSearchInterface {
@@ -25,6 +25,9 @@ export interface CustomInputProps {
   validationRules?: () => void;
   inputProps?: TextInputProps;
   style?: StyleProp<ViewStyle>;
+  wrapperStyle?: StyleProp<ViewStyle>;
+  label?: string;
+  labelStyle?: StyleProp<TextStyle>;
 }
 export interface PhoneNumberInputProps {
   onChangeText: (value: string, name?: string, isValidNumber?: boolean) => void;
@@ -33,6 +36,7 @@ export interface PhoneNumberInputProps {
   inputProps?: TextInputProps;
   style?: StyleProp<ViewStyle>;
   defaultCode?: CountryCode;
+  placeholder?: string;
 }
 export interface MultilineInputProps {
   placeholder?: string;

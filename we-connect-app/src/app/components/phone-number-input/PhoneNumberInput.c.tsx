@@ -16,6 +16,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
   inputProps,
   name,
   style,
+  placeholder = 'Phone Number',
 }) => {
   const phoneInput = useRef<PhoneInput>(null);
   const colors = useTheme().colors as Colors;
@@ -64,6 +65,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
         onBlur: handleOnBlur,
         ...inputProps,
       }}
+      placeholder={placeholder}
       onChangeText={handleOnChange}
       withDarkTheme
     />
