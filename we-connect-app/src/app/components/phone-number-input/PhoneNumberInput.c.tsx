@@ -8,10 +8,11 @@ import {customPadding, globalStyles} from '@styles/global.style.asset';
 import DownArrowIcon from '@icons/DownArrow.icon';
 import rs from '@styles/responsiveSize.style.asset';
 import {PhoneNumberInputProps} from '@components/text-input/interface/inputInterface';
-
+import {getCountry} from 'react-native-localize';
+import {CountryCode} from '@components/text-input/interface/countryCode';
 const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
   onChangeText,
-  defaultCode,
+  defaultCode = getCountry(),
   defaultValue,
   inputProps,
   name,
@@ -45,7 +46,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
       <PhoneInput
         ref={phoneInput}
         defaultValue={defaultValue}
-        defaultCode={defaultCode || 'US'}
+        defaultCode={(defaultCode as unknown as CountryCode) || 'US'}
         renderDropdownImage={<DownArrowIcon />}
         codeTextStyle={styles.phoneInput}
         containerStyle={[

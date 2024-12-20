@@ -1,6 +1,7 @@
+import {useTheme} from '@react-navigation/native';
+import {Colors} from '@styles/colors.style.asset';
 import React, {useEffect, useRef} from 'react';
 import {Animated, DimensionValue, Platform, ViewStyle} from 'react-native';
-import {customTheme} from '../../assets/styles/colors.style.asset';
 
 interface baseSkeletonProps {
   width?: DimensionValue;
@@ -20,6 +21,7 @@ const BaseSkeleton: React.FC<baseSkeletonProps> = ({
   style,
 }) => {
   const opacity = useRef(new Animated.Value(0.3));
+  const colors = useTheme().colors as Colors;
   useEffect(() => {
     Animated.loop(
       Animated.sequence([
@@ -44,7 +46,7 @@ const BaseSkeleton: React.FC<baseSkeletonProps> = ({
           opacity: opacity.current,
           height: height,
           width: width,
-          backgroundColor: bgColor ? bgColor : customTheme.colors.light2,
+          backgroundColor: bgColor ? bgColor : colors.gray6,
           borderRadius: borderRadius,
         },
         style as ViewStyle,

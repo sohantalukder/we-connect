@@ -2,23 +2,22 @@
 import React, {useEffect, useRef, useState} from 'react';
 import CustomBottomSheet from './CustomBottomSheet';
 import {BackHandler} from 'react-native';
-import useIsMountHook from '../../helper/hooks/useIsMount.hook';
-import {_showBottomSheetProps} from './interface';
+import {BottomSheerRefObjectProps, ShowBottomSheetProps} from './interface';
+import useIsMounted from '@helper/hooks/useIsMounted.hook';
 
 declare global {
-  var showBottomSheet: ({
+  var showBottomSheet: <T>({
     flag,
     component,
     componentProps,
-    bottomSheetProps,
     style,
     topBar,
-  }: _showBottomSheetProps) => void;
+  }: ShowBottomSheetProps<T>) => void;
 }
 
 const BottomSheetIndex = () => {
-  const isMount = useIsMountHook();
-  const ref = useRef<any>(null);
+  const isMount = useIsMounted();
+  const ref = useRef<BottomSheerRefObjectProps>(null);
   const [isShow, setIsShow] = useState<boolean>(false);
   const reloadRef = useRef<any>(null);
   const componentRef = useRef<any>(null);
@@ -28,7 +27,6 @@ const BottomSheetIndex = () => {
     flag,
     component = null,
     componentProps = {},
-    bottomSheetProps = {},
     onClose = () => {},
     onOpen = () => {},
     style,
@@ -39,7 +37,6 @@ const BottomSheetIndex = () => {
         component: component,
         propsRef: {
           componentProps,
-          bottomSheetProps,
           onClose,
           onOpen,
           style,
@@ -53,7 +50,6 @@ const BottomSheetIndex = () => {
       componentRef.current = component;
       propsRef.current = {
         componentProps,
-        bottomSheetProps,
         onClose,
         onOpen,
         style,

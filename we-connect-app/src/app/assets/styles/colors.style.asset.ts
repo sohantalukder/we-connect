@@ -1,3 +1,4 @@
+import hexToRgbA from '@components/button/ripple/hexaToRgba';
 import {
   DarkTheme,
   DefaultTheme,
@@ -40,6 +41,8 @@ interface Colors {
   border: ColorValue;
   notification: ColorValue;
   rippleColor: ColorValue;
+  placeHolderBg: ColorValue;
+  placeHolder: ColorValue;
 }
 
 interface ThemeColors extends Omit<NativeTheme, 'colors'> {
@@ -83,6 +86,8 @@ const appColors: Record<ColorMode, ThemeColors> = {
       border: '#FFFFFF',
       notification: '#FFFFFF',
       rippleColor: '#000000',
+      placeHolderBg: '#DDDDDE',
+      placeHolder: '#FFFFFF',
     },
   },
   dark: {
@@ -93,7 +98,7 @@ const appColors: Record<ColorMode, ThemeColors> = {
       badgeColor: '#9F1210',
       black: '#000000',
       white: '#FFFFFF',
-      default: '#1A1B1C',
+      default: '#080402',
       default1: '#FAFAFB',
       transparent: 'transparent',
       whiteOpacity: '#252525',
@@ -106,8 +111,8 @@ const appColors: Record<ColorMode, ThemeColors> = {
       gray6: '#4A4B4D',
       gray7: '#373839',
       gray8: '#2C2D2F',
-      gray9: '#1A1B1C',
-      background: '#1A1B1C',
+      gray9: '#080402',
+      background: '#080402',
       success1: '#3B8756',
       success2: '#CEFDD6',
       success3: '#F7FFF5',
@@ -116,11 +121,13 @@ const appColors: Record<ColorMode, ThemeColors> = {
       error3: '#FFFBFF',
       info1: '#EFCC41',
       gray2Opacity2: '#32343666',
-      card: '#000000',
-      text: '#000000',
-      border: '#000000',
+      card: '#080402',
+      text: '#080402',
+      border: '#080402',
       notification: '#000000',
       rippleColor: '#FFFFFF',
+      placeHolderBg: '#2C2D2F',
+      placeHolder: hexToRgbA('#FFFFFF', 0.5),
     },
   },
 };

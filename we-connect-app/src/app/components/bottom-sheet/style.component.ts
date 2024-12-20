@@ -1,33 +1,34 @@
 import {StyleSheet} from 'react-native';
-import {customTheme} from '../../assets/styles/colors.style.asset';
-import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../../assets/ts/core.data';
 import rs from '../../assets/styles/responsiveSize.style.asset';
+import {Colors} from '@styles/colors.style.asset';
+import hexToRgbA from '@components/button/ripple/hexaToRgba';
 
-const bottomSheetStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    height: SCREEN_HEIGHT,
-    width: SCREEN_WIDTH,
-    zIndex: 999,
-  },
-  backdrop: {backgroundColor: 'rgba(1,1,1, 0.1)', flex: 1},
-  backdropHandler: {flex: 1},
-  viewContainer: {
-    height: 'auto',
-    maxHeight: '65%',
-    minHeight: '15%',
-    backgroundColor: customTheme.colors.surface_dark,
-    paddingTop: 24,
-    paddingBottom: 13,
-  },
-  topBar: {
-    alignSelf: 'center',
-    width: rs(36),
-    height: 5,
-    backgroundColor: customTheme.colors.grey5,
-  },
-});
+const bottomSheetStyles = (colors: Colors) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      position: 'absolute',
+      left: 0,
+      bottom: 0,
+      height: rs('hf'),
+      width: rs('wf'),
+      zIndex: 999,
+    },
+    backdrop: {backgroundColor: hexToRgbA(colors.default1, 0.1), flex: 1},
+    backdropHandler: {flex: 1},
+    viewContainer: {
+      height: 'auto',
+      maxHeight: '75%',
+      minHeight: '15%',
+      backgroundColor: colors.background,
+      paddingTop: 24,
+      paddingBottom: 13,
+    },
+    topBar: {
+      alignSelf: 'center',
+      width: rs(36),
+      height: 5,
+      backgroundColor: colors.gray5,
+    },
+  });
 export default bottomSheetStyles;
