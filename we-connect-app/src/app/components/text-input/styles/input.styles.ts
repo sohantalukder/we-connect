@@ -26,6 +26,15 @@ export const inputStyles = ({
       alignItems: 'center',
       justifyContent: 'space-between',
     },
+    multiLineContainer: {
+      gap: 12,
+      borderRadius: 16,
+      borderWidth: 1,
+      borderColor: colors.gray8,
+      backgroundColor: colors.transparent,
+      ...customPadding(0, 5, 0, 5),
+      flexDirection: 'row',
+    },
     activeContainer: {
       borderColor: colors.primary,
     },

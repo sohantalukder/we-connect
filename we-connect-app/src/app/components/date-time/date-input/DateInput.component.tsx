@@ -9,17 +9,18 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {DateTimePickerEvent} from '@react-native-community/datetimepicker';
-import moment from 'moment-timezone';
 import rs from '../../../assets/styles/responsiveSize.style.asset';
-import {customTheme} from '../../../assets/styles/colors.style.asset';
 import {typographies} from '../../../assets/styles/typographies.style.asset';
 import {
   customPadding,
   globalStyles,
 } from '../../../assets/styles/global.style.asset';
 import CustomPicker from '../CustomPicker';
-import ArrowDownIcon from '../../../assets/icons/ArrowDown.icon.assets';
-
+import {Colors} from '@styles/colors.style.asset';
+import {useTheme} from '@react-navigation/native';
+import dayjs from 'dayjs';
+import CalenderIcon from '@icons/Calender.icon';
+import {inputStyles} from '@components/text-input/styles/input.styles';
 interface dateInputProps {
   label?: string;
   placeholder?: string;
@@ -46,6 +47,7 @@ const DateInput: React.FC<dateInputProps> = ({
   icon,
   minimumDate,
 }) => {
+  const colors = useTheme().colors as Colors;
   const [date, setDate] = useState<Date>(new Date(defaultValue));
   const [show, setShow] = useState<boolean>(false);
   const dateChange = (event: DateTimePickerEvent, newDate?: Date) => {
@@ -64,8 +66,8 @@ const DateInput: React.FC<dateInputProps> = ({
             style={[globalStyles.flexRow, {gap: rs(8), marginBottom: rs(8)}]}>
             <Text
               style={[
-                typographies.interSemiBold16,
-                {color: customTheme.colors.black},
+                typographies(colors).bodyLargeSemibold,
+                {color: colors.default1},
                 labelStyle,
               ]}>
               {label}
@@ -77,33 +79,25 @@ const DateInput: React.FC<dateInputProps> = ({
           onPress={handleOpenModal}
           activeOpacity={0.6}
           style={[
-            styles.container,
-            {borderColor: customTheme.colors.grey3},
+            styles(colors).container,
+            show && inputStyles({colors}).activeContainer,
             containerStyle,
           ]}>
           <View style={[globalStyles.flexRow]}>
             {leftIcon}
             <Text
               style={[
-                typographies.interNormal16,
+                typographies(colors).bodyLargeRegular,
                 globalStyles.flexShrink1,
                 {
-                  color: !date
-                    ? customTheme.colors.grey3
-                    : customTheme.colors.black,
+                  color: !date ? colors.gray3 : colors.default1,
                 },
               ]}
               numberOfLines={1}>
-              {moment(date).format('DD-MM-yyyy') || placeholder}
+              {dayjs(date).format('DD-MM-YYYY') || placeholder}
             </Text>
           </View>
-          <View style={{transform: [{rotate: '270deg'}]}}>
-            <ArrowDownIcon
-              height={20}
-              width={20}
-              fill={customTheme.colors.pink}
-            />
-          </View>
+          <CalenderIcon />
         </TouchableOpacity>
       </View>
       {show && (
@@ -120,17 +114,18 @@ const DateInput: React.FC<dateInputProps> = ({
 
 export default DateInput;
 
-const styles = StyleSheet.create({
-  container: {
-    borderColor: customTheme.colors.grey3,
-    ...customPadding(17, 16, 17, 16),
-    borderWidth: 1,
-    width: '100%',
-    borderRadius: rs(16),
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flexGrow: 1,
-    gap: 10,
-  },
-});
+const styles = (colors: Colors) =>
+  StyleSheet.create({
+    container: {
+      borderColor: colors.gray8,
+      ...customPadding(17, 16, 17, 16),
+      borderWidth: 1,
+      width: '100%',
+      borderRadius: rs(16),
+      alignItems: 'center',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      flexGrow: 1,
+      gap: 10,
+    },
+  });

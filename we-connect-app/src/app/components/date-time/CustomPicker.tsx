@@ -2,7 +2,8 @@ import React from 'react';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import {useColorScheme} from 'react-native';
 import {_dateTime} from './interface';
-import {customTheme} from '../../assets/styles/colors.style.asset';
+import {useTheme} from '@react-navigation/native';
+import {Colors} from '@styles/colors.style.asset';
 
 const CustomPicker: React.FC<_dateTime> = ({
   value = new Date(),
@@ -10,6 +11,7 @@ const CustomPicker: React.FC<_dateTime> = ({
   onChange = () => {},
   minimumDate,
 }) => {
+  const colors = useTheme().colors as Colors;
   const theme = useColorScheme() || 'light';
   return (
     <RNDateTimePicker
@@ -17,7 +19,7 @@ const CustomPicker: React.FC<_dateTime> = ({
       mode={mode}
       onChange={onChange}
       themeVariant={theme}
-      accentColor={customTheme.colors.pink}
+      accentColor={colors.primary as string}
       minimumDate={minimumDate}
     />
   );
