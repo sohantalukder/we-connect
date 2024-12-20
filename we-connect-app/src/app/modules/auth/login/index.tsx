@@ -12,7 +12,11 @@ import {
 import Logo from '@icons/Logo.icon';
 import PasswordInput from '@components/text-input/PasswordInput.c';
 import Button from '@components/button/button/Button.component';
-import {customPadding, globalStyles} from '@styles/global.style.asset';
+import {
+  customPadding,
+  customMargin,
+  globalStyles,
+} from '@styles/global.style.asset';
 import {typographies} from '@styles/typographies.style.asset';
 import {Colors} from '@styles/colors.style.asset';
 import {useNavigation, useTheme} from '@react-navigation/native';
@@ -78,16 +82,14 @@ const LoginIndex: React.FC = () => {
           </View>
           <Button text="Login" onPress={() => {}} />
           <Text
-            onPress={() => console.log('first')}
             style={[
               typographies(colors).bodyMediumRegular,
-              {...customPadding(60, 0, 16, 0), color: colors.gray3},
+              globalStyles.textAlignCenter,
+              {...customMargin(60, 0, 16, 0), color: colors.gray3},
             ]}>
             Don't have an account?{' '}
             <Text
-              onPress={() =>
-                navigation.navigate(screens.forgotPassword as never)
-              }
+              onPress={() => navigation.navigate(screens.signUp as never)}
               style={[
                 typographies(colors).bodyMediumSemibold,
                 {color: colors.primary},

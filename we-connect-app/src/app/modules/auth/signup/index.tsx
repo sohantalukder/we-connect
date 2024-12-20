@@ -54,12 +54,14 @@ const SignUpIndex: React.FC = () => {
           <Button
             text="Sign up"
             wrapStyle={{...customMargin(16)}}
-            onPress={() => {}}
+            onPress={() =>
+              navigation.navigate(screens.otpVerification as never)
+            }
           />
           <Text
             style={[
               typographies(colors).bodyMediumRegular,
-              {...customPadding(60, 0, 16, 0), color: colors.gray3},
+              {...customMargin(60, 0, 16, 0), color: colors.gray3},
             ]}>
             Have an account?{' '}
             <Text

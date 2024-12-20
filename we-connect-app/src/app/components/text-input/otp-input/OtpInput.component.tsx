@@ -1,132 +1,215 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, {useMemo, useRef} from 'react';
-import {StyleSheet, TextInput, View, ViewStyle} from 'react-native';
-import {customTheme} from '../../../assets/styles/colors.style.asset';
-import {customPadding} from '../../../assets/styles/global.style.asset';
-import rs from '../../../assets/styles/responsiveSize.style.asset';
-import {typographies} from '../../../assets/styles/typographies.style.asset';
-import isEmpty from '../../../helper/utilities/isEmpty.utility';
+import React, {useMemo, useRef, useCallback} from 'react';
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  ViewStyle,
+  NativeSyntheticEvent,
+  TextInputKeyPressEventData,
+} from 'react-native';
+import {customPadding} from '@styles/global.style.asset';
+import rs from '@styles/responsiveSize.style.asset';
+import {typographies} from '@styles/typographies.style.asset';
+import {useTheme} from '@react-navigation/native';
+import {Colors} from '@styles/colors.style.asset';
+import getHexColorWithOpacity from '@helper/utilities/getHexColorWithOpacity';
 
-interface _otpInputProps {
+interface OTPInputProps {
   length?: number;
   callback?: (params: string) => void;
   style?: ViewStyle;
 }
-const OTPInput: React.FC<_otpInputProps> = ({length = 6, callback, style}) => {
-  const inputRefs = useMemo(
-    () =>
-      Array(length)
-        .fill(0)
-        .map(() => React.createRef()),
-    [],
+
+const OTPInput: React.FC<OTPInputProps> = ({length = 6, callback, style}) => {
+  const colors = useTheme().colors as Colors;
+  const inputRefs = useRef<Array<TextInput | null>>(Array(length).fill(null));
+  const values = useRef<Record<number, string>>({});
+
+  const componentStyles = useMemo(() => styles(colors), [colors]);
+
+  const handleFillUp = useCallback(() => {
+    const number = Array.from({length})
+      .map((_, i) => values.current[i] || '')
+      .join('');
+
+    if (number.length === length) {
+      callback?.(number);
+    }
+  }, [callback, length]);
+
+  const handleOnFocus = useCallback(
+    (index: number) => {
+      if (inputRefs.current[index]) {
+        inputRefs.current[index]?.setNativeProps({
+          style: componentStyles.focus,
+        });
+      }
+    },
+    [componentStyles.focus],
   );
-  const values = useRef({});
-  const handleFillUp = () => {
-    let fillUp = false,
-      number = '';
-    for (let i = 0; i < length; i++) {
-      if (isEmpty((values as any)[i])) {
-        break;
+
+  const handleOnBlur = useCallback(
+    (index: number) => {
+      if (inputRefs.current[index]) {
+        inputRefs.current[index]?.setNativeProps({
+          style: componentStyles.input,
+        });
+      }
+    },
+    [componentStyles.input],
+  );
+
+  const setInputValue = useCallback((index: number, value: string) => {
+    values.current[index] = value;
+    inputRefs.current[index]?.setNativeProps({text: value});
+  }, []);
+
+  const handlePaste = useCallback(
+    (text: string, currentIndex: number) => {
+      // Clean the pasted text to only include numbers
+      const cleanText = text.replace(/[^0-9]/g, '');
+
+      // Handle each character of the pasted text
+      for (
+        let i = 0;
+        i < Math.min(cleanText.length, length - currentIndex);
+        i++
+      ) {
+        const targetIndex = currentIndex + i;
+        setInputValue(targetIndex, cleanText[i]);
+      }
+
+      // Focus the next empty input or the last input
+      const nextFocusIndex = Math.min(
+        currentIndex + cleanText.length,
+        length - 1,
+      );
+      inputRefs.current[nextFocusIndex]?.focus();
+
+      // Check if OTP is complete after a short delay to ensure all values are set
+      if (currentIndex + cleanText.length >= length) {
+        setTimeout(handleFillUp, 50);
+      }
+    },
+    [length, handleFillUp, setInputValue],
+  );
+
+  const handleBackspace = useCallback(
+    (index: number) => {
+      // If current input is empty and not the first input, move to previous
+      if (!values.current[index] && index > 0) {
+        setInputValue(index - 1, '');
+        inputRefs.current[index - 1]?.focus();
+        handleOnBlur(index);
       } else {
-        number += (values as any)[i];
+        // Clear current input
+        setInputValue(index, '');
       }
-      if (i === length - 1) {
-        fillUp = true;
+    },
+    [handleOnBlur, setInputValue],
+  );
+
+  const handleKeyPress = useCallback(
+    (
+      event: NativeSyntheticEvent<TextInputKeyPressEventData>,
+      index: number,
+    ) => {
+      const {key} = event.nativeEvent;
+
+      if (key === 'Backspace') {
+        // Prevent default behavior
+        event.preventDefault?.();
+        handleBackspace(index);
       }
-    }
-    if (fillUp) {
-      callback && callback(number);
-    }
-  };
-  const handleOnFocus = async (index: number) => {
-    (inputRefs as any)[index].current.setNativeProps({
-      style: {...styles.focus},
-    });
-  };
-  const handleOnBlur = (index: number) => {
-    (inputRefs as any)[index].current.setNativeProps({
-      style: {...styles.input},
-    });
-  };
-  const renderFields = () => {
-    const view: any[] = [];
-    inputRefs.map((_, index) => {
-      return view.push(
+    },
+    [handleBackspace],
+  );
+
+  const renderInputs = useMemo(
+    () =>
+      Array.from({length}).map((_, index) => (
         <TextInput
           key={index}
-          style={styles.input}
-          maxLength={1}
-          inputMode={'numeric'}
+          ref={el => (inputRefs.current[index] = el)}
+          style={componentStyles.input}
+          maxLength={index === length - 1 ? 1 : undefined}
+          inputMode="numeric"
           keyboardType="number-pad"
           placeholder="0"
           autoComplete="one-time-code"
-          placeholderTextColor={customTheme.colors.light2}
-          ref={(inputRefs as any)[index]}
-          selectionColor={customTheme.colors.orange}
+          placeholderTextColor={colors.gray7}
+          selectionColor={colors.primary}
           selectTextOnFocus
           onFocus={() => handleOnFocus(index)}
-          // onBlur={() => handleOnBlur(index)}
+          onBlur={() => handleOnBlur(index)}
           textAlignVertical="center"
-          onKeyPress={({nativeEvent}) => {
-            if (nativeEvent.key === 'Backspace') {
-              if (index - 1 >= 0) {
-                (values as any)[index - 1] = '';
-                const input = (inputRefs as any)[index - 1].current;
-                if (input) {
-                  input.focus();
-                  handleOnBlur(index);
-                }
-              }
+          onKeyPress={e => handleKeyPress(e, index)}
+          onChangeText={text => {
+            // Handle backspace through text change
+            if (text === '') {
+              handleBackspace(index);
+              return;
+            }
+
+            // Check if this might be a paste operation
+            if (text.length > 1) {
+              handlePaste(text, index);
             } else {
-              (inputRefs as any)[index].current = nativeEvent.key;
-              (values as any)[index] = nativeEvent.key;
-              if ((inputRefs as any)[index + 1]) {
-                (inputRefs as any)[index + 1].current.focus();
-              } else {
-                if (index + 1 === length) {
-                  handleFillUp();
-                }
+              // Handle single digit input
+              setInputValue(index, text);
+              if (text && index < length - 1) {
+                inputRefs.current[index + 1]?.focus();
+              }
+              if (index === length - 1 && text) {
+                handleFillUp();
               }
             }
           }}
-          value={(inputRefs as any)[index].current}
-        />,
-      );
-    });
-    return view;
-  };
+        />
+      )),
+    [
+      colors.gray7,
+      colors.primary,
+      componentStyles.input,
+      handleOnFocus,
+      handleOnBlur,
+      handleKeyPress,
+      handlePaste,
+      handleBackspace,
+      length,
+      setInputValue,
+      handleFillUp,
+    ],
+  );
 
-  if (inputRefs.length < length) {
-    return null;
-  }
-
-  return <View style={[styles.container, style]}>{renderFields()}</View>;
+  return <View style={[componentStyles.container, style]}>{renderInputs}</View>;
 };
 
 export default OTPInput;
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: rs(12),
-  },
-  input: {
-    borderRadius: rs(15),
-    ...typographies.interSemiBold34,
-    backgroundColor: customTheme.colors.white,
-    ...customPadding(7, 10, 7, 9),
-    textAlign: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    height: rs(60),
-    width: rs(45),
-    borderColor: customTheme.colors.light2,
-    gap: 9,
-  },
-  focus: {
-    borderColor: customTheme.colors.pink,
-    backgroundColor: customTheme.colors.pink,
-  },
-});
+const styles = (colors: Colors) =>
+  StyleSheet.create({
+    container: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: rs(12),
+    },
+    input: {
+      borderRadius: rs(15),
+      ...typographies(colors).heading2,
+      backgroundColor: colors.transparent,
+      ...customPadding(7, 10, 7, 9),
+      textAlign: 'center',
+      justifyContent: 'center',
+      borderWidth: 1,
+      height: rs(60),
+      width: rs(45),
+      borderColor: colors.gray6,
+      gap: 9,
+    },
+    focus: {
+      borderColor: colors.primary,
+      backgroundColor: getHexColorWithOpacity(colors.primary, 0.1),
+    },
+  });

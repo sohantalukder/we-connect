@@ -1,7 +1,7 @@
 import {IconProps} from '@entity-models/iconProps.types';
 import React from 'react';
 import {TextInputProps, StyleProp, ViewStyle, TextStyle} from 'react-native';
-import {CountryCode} from './coutryCode';
+import {CountryCode} from './countryCode';
 
 export interface HeaderSearchInterface {
   onChange: (text: string) => void;

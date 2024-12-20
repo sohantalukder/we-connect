@@ -1,4 +1,4 @@
-import {ViewStyle} from 'react-native';
+import {View, ViewStyle} from 'react-native';
 import React, {useRef, useState} from 'react';
 import PhoneInput from 'react-native-phone-number-input';
 import {useTheme} from '@react-navigation/native';
@@ -41,34 +41,35 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
     }
   };
   return (
-    <PhoneInput
-      ref={phoneInput}
-      defaultValue={defaultValue}
-      defaultCode={defaultCode || 'US'}
-      autoFocus
-      renderDropdownImage={<DownArrowIcon />}
-      codeTextStyle={styles.phoneInput}
-      containerStyle={[
-        styles.container,
-        globalStyles.widthFull,
-        {gap: rs(0), ...customPadding(0, 10, 0, 10)},
-        isFocusStyle,
-        style,
-      ]}
-      textContainerStyle={[
-        styles.input,
-        {backgroundColor: colors.transparent, paddingRight: rs(15)},
-      ]}
-      textInputStyle={styles.phoneInput}
-      textInputProps={{
-        onFocus: handleOnFocus,
-        onBlur: handleOnBlur,
-        ...inputProps,
-      }}
-      placeholder={placeholder}
-      onChangeText={handleOnChange}
-      withDarkTheme
-    />
+    <View>
+      <PhoneInput
+        ref={phoneInput}
+        defaultValue={defaultValue}
+        defaultCode={defaultCode || 'US'}
+        renderDropdownImage={<DownArrowIcon />}
+        codeTextStyle={styles.phoneInput}
+        containerStyle={[
+          styles.container,
+          globalStyles.widthFull,
+          {gap: rs(0), ...customPadding(0, 10, 0, 10)},
+          isFocusStyle,
+          style,
+        ]}
+        textContainerStyle={[
+          styles.input,
+          {backgroundColor: colors.transparent, paddingRight: rs(15)},
+        ]}
+        textInputStyle={styles.phoneInput}
+        textInputProps={{
+          onFocus: handleOnFocus,
+          onBlur: handleOnBlur,
+          ...inputProps,
+        }}
+        placeholder={placeholder}
+        onChangeText={handleOnChange}
+        withDarkTheme
+      />
+    </View>
   );
 };
 

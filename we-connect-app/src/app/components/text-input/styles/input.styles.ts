@@ -51,5 +51,6 @@ export const inputStyles = ({
       fontSize: 16,
       fontFamily: fonts.urbanist600,
       textAlignVertical: 'center',
+      padding: 0,
     },
   });
