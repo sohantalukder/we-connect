@@ -1,6 +1,5 @@
-import e from 'express';
 import mongoose from 'mongoose';
-import appConstant from '@constant/app.constant';
+import appConstant from '../constants/app.constant';
 
 const Schema = mongoose.Schema;
 

@@ -5,8 +5,8 @@ import {
   StrategyOptions,
 } from 'passport-jwt';
 import dotenv from 'dotenv';
-import configConstant from '@constant/config.constant';
-import User from '@/models/users';
+import configConstant from '../constants/config.constant';
+import User from '../models/users';
 
 dotenv.config();
 

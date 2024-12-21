@@ -1,4 +1,4 @@
-import configConstant from '@/constant/config.constant';
+import configConstant from '../constants/config.constant';
 import mongoose from 'mongoose';
 
 // Mongoose ODM

@@ -1,8 +1,8 @@
 'use strict';
 import express, {Request, Response} from 'express';
-import 'module-alias/register';
-import configConstant from '@constant/config.constant';
-import '@config/mongodb';
+import configConstant from './constants/config.constant';
+import './configs/mongodb';
+import './configs/passport';
 import cors from 'cors';
 import passport from 'passport';
 const app = express();
