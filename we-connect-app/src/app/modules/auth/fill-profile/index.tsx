@@ -13,11 +13,19 @@ import MultiTextInput from '@components/text-input/multi-input/MultiTextInput.c'
 import DateInput from '@components/date-time/date-input/DateInput.component';
 import {useNavigation} from '@react-navigation/native';
 import {screens} from '@routes/routeName.routes';
+import ImagePickerBottomSheet from '@packages/image-picker/ImagePicker.bottomSheet.app.component';
 const ImageUpload = () => {
   return (
     <View style={{height: rs(200), width: rs(200)}}>
       <AvatarImage />
-      <RippleButton borderRadius={rs(10)}>
+      <RippleButton
+        borderRadius={rs(10)}
+        onPress={() =>
+          global.showBottomSheet({
+            flag: true,
+            component: ImagePickerBottomSheet,
+          })
+        }>
         <View style={{position: `${'absolute'}`, bottom: rs(0), right: rs(15)}}>
           <EditIcon />
         </View>
@@ -55,7 +63,7 @@ const FillProfileIndex = () => {
       </ScrollView>
       <Button
         wrapStyle={{...customMargin(10, 20, 30, 20), width: undefined}}
-        onPress={() => navigation.navigate(screens.forgotPassword as never)}
+        onPress={() => navigation.navigate(screens.setupComplete as never)}
         text="Save"
       />
     </SplashContainer>

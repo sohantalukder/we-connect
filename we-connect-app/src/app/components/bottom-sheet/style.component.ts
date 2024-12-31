@@ -21,8 +21,10 @@ const bottomSheetStyles = (colors: Colors) =>
       maxHeight: '75%',
       minHeight: '15%',
       backgroundColor: colors.background,
-      paddingTop: 24,
+      paddingTop: 12,
       paddingBottom: 13,
+      borderTopLeftRadius: 12,
+      borderTopRightRadius: 12,
     },
     topBar: {
       alignSelf: 'center',

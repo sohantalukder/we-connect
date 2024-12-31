@@ -3,33 +3,28 @@ import SplashContainer from '@layouts/SplashContainer.layout';
 import {customPadding} from '@styles/global.style.asset';
 import LogoBG from '@icons/LogoBG.icon';
 import Logo from '@icons/Logo.icon';
-import {
-  Easing,
-  Animated as ReactAnimated,
-  StyleSheet,
-  View,
-} from 'react-native';
+import {Easing, Animated, StyleSheet, View} from 'react-native';
 import rs from '@styles/responsiveSize.style.asset';
-import Loader from '@icons/Loader.icon';
 import {useNavigation} from '@react-navigation/native';
 import {screens} from '@routes/routeName.routes';
+import Loader from '@components/loader/Loader.c';
 
 const SplashLogo: React.FC = () => {
   const [isAnimating, setIsAnimating] = useState(true);
 
-  const scale = useRef(new ReactAnimated.Value(0)).current;
-  const scale2 = useRef(new ReactAnimated.Value(0)).current;
+  const scale = useRef(new Animated.Value(0)).current;
+  const scale2 = useRef(new Animated.Value(0)).current;
 
   useLayoutEffect(() => {
     if (isAnimating) {
-      ReactAnimated.sequence([
-        ReactAnimated.timing(scale, {
+      Animated.sequence([
+        Animated.timing(scale, {
           toValue: 1.2,
           duration: 1000,
           easing: Easing.bezier(0.4, 0, 0.2, 1),
           useNativeDriver: true,
         }),
-        ReactAnimated.timing(scale, {
+        Animated.timing(scale, {
           toValue: 1,
           duration: 1000,
           easing: Easing.bezier(0.4, 0, 0.2, 1),
@@ -38,7 +33,7 @@ const SplashLogo: React.FC = () => {
       ]).start();
     }
     setTimeout(() => {
-      ReactAnimated.timing(scale2, {
+      Animated.timing(scale2, {
         toValue: 1,
         duration: 1000,
         easing: Easing.bezier(0.4, 0, 0.2, 1),
@@ -64,45 +59,23 @@ const SplashLogo: React.FC = () => {
 
   return (
     <View style={styles.logoContainer}>
-      <ReactAnimated.View style={animatedStyle}>
+      <Animated.View style={animatedStyle}>
         <LogoBG />
-      </ReactAnimated.View>
-      <ReactAnimated.View style={[animatedStyle2, styles.logo]}>
+      </Animated.View>
+      <Animated.View style={[animatedStyle2, styles.logo]}>
         <Logo />
-      </ReactAnimated.View>
+      </Animated.View>
     </View>
   );
 };
 const SplashLoader = () => {
-  const spinAnim = useRef(new ReactAnimated.Value(0));
   const [showLoader, setShowLoader] = useState(false);
-  const interpolateRotation = spinAnim.current?.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
-  });
-  const animatedStyle = {
-    transform: [{rotate: interpolateRotation}],
-  };
   useLayoutEffect(() => {
     setTimeout(() => {
       setShowLoader(true);
-      ReactAnimated.loop(
-        ReactAnimated.timing(spinAnim.current, {
-          toValue: 1,
-          duration: 1000,
-          easing: Easing.linear,
-          useNativeDriver: true,
-        }),
-      ).start();
     }, 2000);
   }, []);
-  return (
-    showLoader && (
-      <ReactAnimated.View style={[styles.loader, animatedStyle]}>
-        <Loader />
-      </ReactAnimated.View>
-    )
-  );
+  return showLoader && <Loader />;
 };
 const SplashIndex: React.FC = () => {
   const navigation = useNavigation();

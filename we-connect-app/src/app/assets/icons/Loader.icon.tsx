@@ -10,7 +10,7 @@ import Svg, {
 import rs from '../styles/responsiveSize.style.asset';
 import {IconProps} from '@entity-models/iconProps.types';
 
-const Loader: React.FC<IconProps> = ({width = rs(60), height = rs(60)}) => {
+const LoaderIcon: React.FC<IconProps> = ({width = rs(60), height = rs(60)}) => {
   return (
     <Svg width={width} height={height} viewBox="0 0 60 60" fill="none">
       <G clipPath="url(#clip0_1127_18234)">
@@ -39,4 +39,4 @@ const Loader: React.FC<IconProps> = ({width = rs(60), height = rs(60)}) => {
     </Svg>
   );
 };
-export default Loader;
+export default LoaderIcon;

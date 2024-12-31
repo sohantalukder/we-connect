@@ -28,6 +28,8 @@ module.exports = {
           '@illustrations': './src/app/assets/illustrations',
           // Components: All common components (e.g.: Button, Modal, etc.)
           '@components': './src/app/components',
+          // Lottie: All Lottie related files (e.g.: Lottie assets, etc.)
+          '@lottie': './src/app/lottie',
           // API: All API related files (e.g.: API calls, configurations, etc.)
           '@api': './src/app/controllers/api',
           // Formatters: All Formatters related files (e.g.: Formatters etc.)

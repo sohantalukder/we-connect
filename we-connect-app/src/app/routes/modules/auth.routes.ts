@@ -6,6 +6,7 @@ import LoginIndex from '@modules/auth/login';
 import ForgotPasswordIndex from '@modules/auth/forgot-password';
 import OtpVerificationIndex from '@modules/auth/otp-verification';
 import FillProfileIndex from '@modules/auth/fill-profile';
+import SetupComplete from '@modules/auth/setup-complete';
 
 const authRoutes: Array<RouteProps> = [
   {
@@ -43,6 +44,12 @@ const authRoutes: Array<RouteProps> = [
     component: FillProfileIndex,
     isHide: false,
     name: screens.fillProfile,
+  },
+  {
+    accessLabel: 0,
+    component: SetupComplete,
+    isHide: false,
+    name: screens.setupComplete,
   },
 ];
 

@@ -9,4 +9,5 @@ export enum screens {
   forgotPassword = 'forgot-password',
   otpVerification = 'otp-verification',
   fillProfile = 'fill-profile',
+  setupComplete = 'setup-complete',
 }
