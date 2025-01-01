@@ -1,11 +1,14 @@
-import {View, Text} from 'react-native';
+import {Text} from 'react-native';
 import React from 'react';
+import Container from '@layouts/Container.layout';
+import MainHeader from '@components/header/MainHeader.c';
 
 const StatusIndex = () => {
   return (
-    <View>
-      <Text>StatusIndex</Text>
-    </View>
+    <Container>
+      <MainHeader title="Status" />
+      <Text>CallsIndex</Text>
+    </Container>
   );
 };
 

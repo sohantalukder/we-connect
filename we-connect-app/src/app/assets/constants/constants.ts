@@ -4,6 +4,7 @@ import ChatsIcon from '@icons/Chats.icon';
 import StoryIcon from '@icons/Story.icon';
 import CallsIndex from '@modules/calls';
 import ChatsIndex from '@modules/chats';
+import StatusIndex from '@modules/status';
 import {screens} from '@routes/routeName.routes';
 
 const bottomTabList: BottomTabInterface[] = [
@@ -16,7 +17,7 @@ const bottomTabList: BottomTabInterface[] = [
   {
     Icon: StoryIcon,
     route: screens.status,
-    Component: ChatsIndex,
+    Component: StatusIndex,
     name: 'Status',
   },
   {
