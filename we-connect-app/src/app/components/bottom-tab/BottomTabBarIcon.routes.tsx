@@ -1,16 +1,17 @@
-import {Animated, Text, Easing} from 'react-native';
+import {Animated, Easing} from 'react-native';
 import React, {useEffect, useRef} from 'react';
-import {customTheme} from '../../assets/styles/colors.style.asset';
-import {_bottomTabInterface} from './interface';
-import bottomTabStyle from './styles.component';
-import {typographies} from '../../assets/styles/typographies.style.asset';
+import {Colors} from '../../assets/styles/colors.style.asset';
+import {BottomTabInterface} from './interface';
 import rs from '../../assets/styles/responsiveSize.style.asset';
+import {useTheme} from '@react-navigation/native';
+import getHexColorWithOpacity from '@helper/utilities/getHexColorWithOpacity';
+import {customPadding} from '@styles/global.style.asset';
 
 const BottomTabBarIcon: React.FC<
-  Omit<_bottomTabInterface, 'Component' | 'route'> & {focused: boolean}
-> = ({Icon, focused, name}) => {
+  Omit<BottomTabInterface, 'Component' | 'route'> & {focused: boolean}
+> = ({Icon, focused}) => {
   const colorAnimation = useRef(new Animated.Value(focused ? 1 : 0)).current;
-
+  const colors = useTheme().colors as Colors;
   // Animate color change based on the focused prop
   useEffect(() => {
     Animated.timing(colorAnimation, {
@@ -25,35 +26,23 @@ const BottomTabBarIcon: React.FC<
   // Interpolate the background color based on the animated value
   const backgroundColor = colorAnimation.interpolate({
     inputRange: [0, 1],
-    outputRange: [customTheme.colors.transparent, customTheme.colors.primary],
+    outputRange: [
+      colors.transparent as string,
+      getHexColorWithOpacity(colors.primary, 0.4),
+    ],
   });
 
   return (
-    <Animated.View style={bottomTabStyle.iconContainer}>
-      <Animated.View
-        style={[
-          {
-            padding: rs(4.2),
-            borderRadius: rs(500),
-          },
-          {backgroundColor},
-        ]}>
-        <Icon
-          fill={focused ? customTheme.colors.black : customTheme.colors.grey}
-        />
-      </Animated.View>
-      <Text
-        style={[
-          typographies.labelMedium,
-          {
-            color: focused
-              ? customTheme.colors.primary
-              : customTheme.colors.white,
-            marginTop: rs(4),
-          },
-        ]}>
-        {name}
-      </Text>
+    <Animated.View
+      style={[
+        {
+          padding: rs(4.2),
+          borderRadius: rs(500),
+          ...customPadding(4, 16, 4, 16),
+        },
+        {backgroundColor},
+      ]}>
+      <Icon fill={colors.white} />
     </Animated.View>
   );
 };

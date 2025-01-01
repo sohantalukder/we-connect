@@ -30,6 +30,7 @@ const LetsInIndex: React.FC = () => {
           {socialLoginOptions.map((option, index) => (
             <Button
               key={index}
+              onPress={() => navigation.navigate(screens.home as never)}
               icon={<option.Icon />}
               variant="outline"
               text={option.text}

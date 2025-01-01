@@ -80,7 +80,10 @@ const LoginIndex: React.FC = () => {
               Forgot password
             </Text>
           </View>
-          <Button text="Login" onPress={() => {}} />
+          <Button
+            text="Login"
+            onPress={() => navigation.navigate(screens.home as never)}
+          />
           <Text
             style={[
               typographies(colors).bodyMediumRegular,

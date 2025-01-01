@@ -10,4 +10,12 @@ export enum screens {
   otpVerification = 'otp-verification',
   fillProfile = 'fill-profile',
   setupComplete = 'setup-complete',
+  /* home */
+  home = 'home',
+  /* chats */
+  chats = 'chats',
+  /* status */
+  status = 'status',
+  /* calls */
+  calls = 'calls',
 }

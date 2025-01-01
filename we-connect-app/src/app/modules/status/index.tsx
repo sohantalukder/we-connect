@@ -1,12 +1,12 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 
-const HomeIndex = () => {
+const StatusIndex = () => {
   return (
     <View>
-      <Text>HomeIndex</Text>
+      <Text>StatusIndex</Text>
     </View>
   );
 };
 
-export default HomeIndex;
+export default StatusIndex;
