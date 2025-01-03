@@ -1,16 +1,14 @@
-import {Text} from 'react-native';
 import React from 'react';
 import MainHeader from '@components/header/MainHeader.c';
 import Container from '@layouts/Container.layout';
-import mobileNumberConstant from '@constants/mobileNumberConstant';
+import RNPhoneNumberInput from '@components/rn-phone-number-input';
+import PhoneNumberInput from '@components/phone-number-input/PhoneNumberInput.c';
 const ChatsIndex = () => {
   return (
     <Container>
       <MainHeader title={'Chats'} />
-      <Text>ChatsIndex</Text>
-      <Text style={{color: 'white', fontSize: 300}}>
-        {mobileNumberConstant[0].icon}
-      </Text>
+      <PhoneNumberInput onChangeText={() => {}} />
+      <RNPhoneNumberInput />
     </Container>
   );
 };

@@ -22,7 +22,8 @@ import {useTheme} from '@react-navigation/native';
 import {Colors} from '@styles/colors.style.asset';
 import useIsMounted from '@helper/hooks/useIsMounted.hook';
 import LeftArrowIcon from '@icons/LeftArrow.icon';
-import getHexColorWithOpacity from '@helper/utilities/getHexColorWithOpacity';
+import CheckIcon from '@icons/Check.icon';
+// import {debounceHandler} from '../../../helper/hooks/debouce.hook';
 interface optionsProps {
   titleField: 'value' | 'FULL__DATA';
   item: any;
@@ -83,26 +84,19 @@ const EachOption: React.FC<optionsProps> = ({
     <TouchableOpacity
       activeOpacity={0.7}
       onPress={onPress}
-      style={[
-        globalStyles.rowBetween,
-        {
-          ...customPadding(16, 20, 16, 20),
-          borderBottomWidth: 1,
-          borderBottomColor: getHexColorWithOpacity(colors.gray6, 0.7),
-        },
-      ]}>
+      style={[globalStyles.rowBetween, {...customPadding(10, 0, 10, 0)}]}>
       <Text
-        style={{
-          color: colors.default1,
-          textAlignVertical: 'center',
-          fontSize: 18,
-          textAlign: 'left',
-        }}>
-        <Text style={{fontSize: 22, lineHeight: 0}}>{item?.icon}</Text>
-        {'  '}
-        {item?.countryName}
-        {'  '}+{item?.callingCode}
+        style={[
+          typographies(colors).bodyMediumMedium,
+          {color: colors.default1},
+        ]}>
+        {titleFieldFormatter
+          ? titleFieldFormatter(item)
+          : titleField === 'FULL__DATA'
+          ? item
+          : item[titleField]}
       </Text>
+      {select && <CheckIcon fill={colors.primary} height={16} width={16} />}
     </TouchableOpacity>
   );
 };
@@ -219,7 +213,7 @@ const BottomSheetSelect: React.FC<componentProps> = ({
       style={flatList ? globalStyles.flexShrink1 : {}}
       keyboardVerticalOffset={flatList ? -120 : 0}
       enabled={true}>
-      <View>
+      <View style={{...customPadding(0, 20, 10, 20)}}>
         <View style={styles.topHeaderCont}>
           <View style={styles.topHeader}>
             <TouchableOpacity

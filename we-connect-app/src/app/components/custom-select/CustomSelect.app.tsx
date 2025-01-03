@@ -11,12 +11,13 @@ import React, {ReactElement, useEffect, useState} from 'react';
 import BottomSheetSelect from '../bottom-sheet/select';
 import rs from '../../assets/styles/responsiveSize.style.asset';
 import {typographies} from '../../assets/styles/typographies.style.asset';
-import {customTheme} from '../../assets/styles/colors.style.asset';
 import {
   customPadding,
   globalStyles,
 } from '../../assets/styles/global.style.asset';
-import ArrowDownIcon from '../../assets/icons/ArrowDown.icon.assets';
+import {useTheme} from '@react-navigation/native';
+import {Colors} from '@styles/colors.style.asset';
+import DownArrowIcon from '@icons/DownArrow.icon';
 interface _props {
   label?: string;
   placeholder?: string;
@@ -49,6 +50,7 @@ const CustomSelect: React.FC<_props> = ({
   component,
 }) => {
   const [value, setValue] = useState<any>(null);
+  const colors = useTheme().colors as Colors;
   const handleChange = (item: any) => {
     onChange && onChange(item._id, name);
     setValue(item);
@@ -91,8 +93,8 @@ const CustomSelect: React.FC<_props> = ({
         <View style={[globalStyles.flexRow, {gap: rs(8), marginBottom: rs(8)}]}>
           <Text
             style={[
-              typographies.interSemiBold16,
-              {color: customTheme.colors.black},
+              typographies(colors).bodyLargeRegular,
+              {color: colors.black},
               labelStyle,
             ]}>
             {label}
@@ -101,18 +103,16 @@ const CustomSelect: React.FC<_props> = ({
         </View>
       )}
       <TouchableOpacity
-        style={styles.textContainer}
+        style={styles(colors).textContainer}
         onPress={onPress}
         activeOpacity={0.6}>
         <Text
           style={[
-            typographies.interNormal16,
+            typographies(colors).bodyLargeRegular,
             globalStyles.flexShrink1,
             globalStyles.flexGrow1,
             {
-              color: !value
-                ? customTheme.colors.grey4
-                : customTheme.colors.black,
+              color: !value ? colors.gray4 : colors.black,
             },
           ]}
           numberOfLines={1}>
@@ -123,11 +123,7 @@ const CustomSelect: React.FC<_props> = ({
             : value?.[titleField]) || placeholder}
         </Text>
         <View style={{transform: [{rotate: '270deg'}]}}>
-          <ArrowDownIcon
-            height={20}
-            width={20}
-            fill={customTheme.colors.pink}
-          />
+          <DownArrowIcon height={20} width={20} fill={colors.default1} />
         </View>
       </TouchableOpacity>
     </View>
@@ -136,16 +132,17 @@ const CustomSelect: React.FC<_props> = ({
 
 export default CustomSelect;
 
-const styles = StyleSheet.create({
-  textContainer: {
-    borderWidth: 1,
-    borderColor: customTheme.colors.grey3,
-    flexDirection: 'row',
-    gap: 8,
-    ...customPadding(17, 16, 17, 16),
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: rs(16),
-    height: 56,
-  },
-});
+const styles = (colors: Colors) =>
+  StyleSheet.create({
+    textContainer: {
+      borderWidth: 1,
+      borderColor: colors.gray3,
+      flexDirection: 'row',
+      gap: 8,
+      ...customPadding(17, 16, 17, 16),
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: rs(16),
+      height: 56,
+    },
+  });
