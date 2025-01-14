@@ -28,7 +28,7 @@ const BottomTabBarIcon: React.FC<
     inputRange: [0, 1],
     outputRange: [
       colors.transparent as string,
-      getHexColorWithOpacity(colors.primary, 0.4),
+      getHexColorWithOpacity(colors.primary, 0.8),
     ],
   });
 
@@ -42,7 +42,7 @@ const BottomTabBarIcon: React.FC<
         },
         {backgroundColor},
       ]}>
-      <Icon fill={colors.white} />
+      <Icon fill={focused ? colors.white : colors.default1} />
     </Animated.View>
   );
 };

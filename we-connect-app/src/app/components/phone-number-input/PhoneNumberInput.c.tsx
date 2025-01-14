@@ -1,15 +1,15 @@
 import {View, ViewStyle} from 'react-native';
 import React, {useRef, useState} from 'react';
-import PhoneInput from 'react-native-phone-number-input';
 import {useTheme} from '@react-navigation/native';
 import {Colors} from '@styles/colors.style.asset';
 import {inputStyles} from '@components/text-input/styles/input.styles';
-import {customPadding, globalStyles} from '@styles/global.style.asset';
+import {customPadding} from '@styles/global.style.asset';
 import DownArrowIcon from '@icons/DownArrow.icon';
 import rs from '@styles/responsiveSize.style.asset';
 import {PhoneNumberInputProps} from '@components/text-input/interface/inputInterface';
 import {getCountry} from 'react-native-localize';
 import {CountryCode} from '@components/text-input/interface/countryCode';
+import RNPhoneInput, {RNPhoneInputRef} from 'rn-phone-input-field';
 const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
   onChangeText,
   defaultCode = getCountry(),
@@ -19,7 +19,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
   style,
   placeholder = 'Phone Number',
 }) => {
-  const phoneInput = useRef<PhoneInput>(null);
+  const phoneInput = useRef<RNPhoneInputRef>(null);
   const colors = useTheme().colors as Colors;
   const styles = inputStyles({colors});
   const [isFocusStyle, setIsFocusStyle] = useState<ViewStyle | null>(null);
@@ -30,7 +30,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
     setIsFocusStyle(null);
   };
   const handleOnChange = (text: string) => {
-    phoneInput.current?.setState({number: text});
+    phoneInput.current?.onChangeText({number: text});
     if (text.length > 7) {
       const isValidNumber = phoneInput.current?.isValidNumber(text);
       isValidNumber &&
@@ -43,19 +43,19 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
   };
   return (
     <View>
-      <PhoneInput
+      <RNPhoneInput
         ref={phoneInput}
         defaultValue={defaultValue}
-        defaultCode={(defaultCode as unknown as CountryCode) || 'US'}
-        renderDropdownImage={<DownArrowIcon />}
+        defaultCountry={(defaultCode as unknown as CountryCode) || 'US'}
+        downArrowIcon={<DownArrowIcon />}
         codeTextStyle={styles.phoneInput}
         containerStyle={[
           styles.container,
-          globalStyles.widthFull,
-          {gap: rs(0), ...customPadding(0, 10, 0, 10)},
+          {gap: rs(5), ...customPadding(10, 16, 10, 16)},
           isFocusStyle,
           style,
         ]}
+        darkMode={true}
         textContainerStyle={[
           styles.input,
           {backgroundColor: colors.transparent, paddingRight: rs(15)},
@@ -68,7 +68,6 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
         }}
         placeholder={placeholder}
         onChangeText={handleOnChange}
-        withDarkTheme
       />
     </View>
   );
