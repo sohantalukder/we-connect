@@ -6,6 +6,7 @@ import {
   ViewStyle,
   NativeSyntheticEvent,
   TextInputKeyPressEventData,
+  StyleProp,
 } from 'react-native';
 import {customPadding} from '@styles/global.style.asset';
 import rs from '@styles/responsiveSize.style.asset';
@@ -17,7 +18,7 @@ import getHexColorWithOpacity from '@helper/utilities/getHexColorWithOpacity';
 interface OTPInputProps {
   length?: number;
   callback?: (params: string) => void;
-  style?: ViewStyle;
+  style?: StyleProp<ViewStyle>;
 }
 
 const OTPInput: React.FC<OTPInputProps> = ({length = 6, callback, style}) => {

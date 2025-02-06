@@ -43,6 +43,7 @@ interface Colors {
   rippleColor: ColorValue;
   placeHolderBg: ColorValue;
   placeHolder: ColorValue;
+  shadow: ColorValue;
 }
 
 interface ThemeColors extends Omit<NativeTheme, 'colors'> {
@@ -88,6 +89,7 @@ const appColors: Record<ColorMode, ThemeColors> = {
       rippleColor: '#000000',
       placeHolderBg: '#DDDDDE',
       placeHolder: '#FFFFFF',
+      shadow: '#04060F',
     },
   },
   dark: {
@@ -128,6 +130,7 @@ const appColors: Record<ColorMode, ThemeColors> = {
       rippleColor: '#FFFFFF',
       placeHolderBg: '#2C2D2F',
       placeHolder: hexToRgbA('#FFFFFF', 0.5),
+      shadow: '#6a6d71',
     },
   },
 };

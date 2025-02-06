@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {useColorScheme} from 'react-native';
 import appColors from '@styles/colors.style.asset';
 import BottomSheetIndex from '@components/bottom-sheet';
+import DropdownMenu from '@components/dropdown-menu';
 
 interface Props {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ const NavigationProvider: React.FC<Props> = ({children}) => {
     <NavigationContainer theme={theme}>
       {children}
       <BottomSheetIndex />
+      <DropdownMenu />
     </NavigationContainer>
   );
 };
