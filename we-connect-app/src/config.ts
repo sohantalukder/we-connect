@@ -1,3 +1,5 @@
-const config = {};
+const config = {
+  appName: 'We Connect',
+};
 
-export default {config};
+export default config;

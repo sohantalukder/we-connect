@@ -92,7 +92,7 @@ const DropdownMenu: React.FC = () => {
     bottom:
       dropdownRef.current?.position?.bottom ?? dropdownRef.current?.bottom,
     right: dropdownRef.current?.position?.right ?? dropdownRef.current?.right,
-    bgColor: dropdownRef.current?.bgColor || colors.default,
+    bgColor: dropdownRef.current?.bgColor || colors.gray9,
     shadowColor: dropdownRef.current?.shadowColor || colors.shadow,
   });
   return isVisible ? (

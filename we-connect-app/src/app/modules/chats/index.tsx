@@ -1,10 +1,12 @@
 import React from 'react';
 import MainHeader from '@components/header/MainHeader.c';
 import Container from '@layouts/Container.layout';
-const ChatsIndex = () => {
+import ChatsList from './features/ChatsList';
+const ChatsIndex: React.FC = () => {
   return (
     <Container>
       <MainHeader title={'Chats'} />
+      <ChatsList />
     </Container>
   );
 };

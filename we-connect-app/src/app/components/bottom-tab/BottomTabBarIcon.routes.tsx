@@ -4,7 +4,7 @@ import {Colors} from '../../assets/styles/colors.style.asset';
 import {BottomTabInterface} from './interface';
 import rs from '../../assets/styles/responsiveSize.style.asset';
 import {useTheme} from '@react-navigation/native';
-import getHexColorWithOpacity from '@helper/utilities/getHexColorWithOpacity';
+import hexOpacityToColor from '@helper/utilities/hexOpacityToColor';
 import {customPadding} from '@styles/global.style.asset';
 
 const BottomTabBarIcon: React.FC<
@@ -28,7 +28,7 @@ const BottomTabBarIcon: React.FC<
     inputRange: [0, 1],
     outputRange: [
       colors.transparent as string,
-      getHexColorWithOpacity(colors.primary, 0.8),
+      hexOpacityToColor(colors.primary, 0.8),
     ],
   });
 

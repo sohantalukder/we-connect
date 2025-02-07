@@ -13,7 +13,7 @@ import rs from '@styles/responsiveSize.style.asset';
 import {typographies} from '@styles/typographies.style.asset';
 import {useTheme} from '@react-navigation/native';
 import {Colors} from '@styles/colors.style.asset';
-import getHexColorWithOpacity from '@helper/utilities/getHexColorWithOpacity';
+import hexOpacityToColor from '@helper/utilities/hexOpacityToColor';
 
 interface OTPInputProps {
   length?: number;
@@ -211,6 +211,6 @@ const styles = (colors: Colors) =>
     },
     focus: {
       borderColor: colors.primary,
-      backgroundColor: getHexColorWithOpacity(colors.primary, 0.1),
+      backgroundColor: hexOpacityToColor(colors.primary, 0.1),
     },
   });

@@ -1,6 +1,6 @@
 import {ColorValue} from 'react-native';
 
-const getHexColorWithOpacity = (color?: ColorValue, opacity?: number) => {
+const hexOpacityToColor = (color?: ColorValue, opacity?: number) => {
   if (!color) {
     return '';
   }
@@ -15,4 +15,4 @@ const getHexColorWithOpacity = (color?: ColorValue, opacity?: number) => {
   return String(color) + hexOpacity;
 };
 
-export default getHexColorWithOpacity;
+export default hexOpacityToColor;

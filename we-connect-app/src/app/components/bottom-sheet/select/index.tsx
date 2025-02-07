@@ -22,7 +22,7 @@ import {useTheme} from '@react-navigation/native';
 import {Colors} from '@styles/colors.style.asset';
 import useIsMounted from '@helper/hooks/useIsMounted.hook';
 import LeftArrowIcon from '@icons/LeftArrow.icon';
-import getHexColorWithOpacity from '@helper/utilities/getHexColorWithOpacity';
+import hexOpacityToColor from '@helper/utilities/hexOpacityToColor';
 interface optionsProps {
   titleField: 'value' | 'FULL__DATA';
   item: any;
@@ -88,7 +88,7 @@ const EachOption: React.FC<optionsProps> = ({
         {
           ...customPadding(16, 20, 16, 20),
           borderBottomWidth: 1,
-          borderBottomColor: getHexColorWithOpacity(colors.gray6, 0.7),
+          borderBottomColor: hexOpacityToColor(colors.gray6, 0.7),
         },
       ]}>
       <Text
