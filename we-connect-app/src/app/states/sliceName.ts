@@ -1,5 +1,6 @@
 enum sliceName {
-  authSlice = 'auth-slice'
+  authSlice = 'auth-slice',
+  chatsSlice = 'chats-slice',
 }
 
 export default sliceName;
