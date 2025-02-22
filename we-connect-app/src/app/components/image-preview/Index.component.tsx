@@ -60,7 +60,12 @@ const ImagePreview: React.FC<_imagePreview> = ({
 export default ImagePreview;
 
 const style = StyleSheet.create({
-  relative: {position: 'relative', overflow: 'hidden'},
+  relative: {
+    position: 'relative',
+    overflow: 'hidden',
+    width: '100%',
+    height: '100%',
+  },
   loaderView: {
     position: 'absolute',
     width: '100%',

@@ -1,5 +1,4 @@
-import sliceName from './sliceName.state';
+import sliceName from './sliceName';
 
-export const authStates = (state: any) => state[sliceName.auth];
-export const eventsStates = (state: any) => state[sliceName.events];
-export const collectionStates = (state: any) => state[sliceName.collections];
+export const authStates = (state: any) => state[sliceName.authSlice];
+export const chatsStates = (state: any) => state[sliceName.chatsSlice];

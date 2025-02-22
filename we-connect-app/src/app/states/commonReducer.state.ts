@@ -10,23 +10,21 @@ const commonReducers = {
     state.isLoading = true;
     state.firstRender = true;
   },
-  isGettingSuccess: <T, P>(
+  isGettingSuccess: <T>(
     state: COMMON_STATE<T>,
-    {payload}: PAYLOAD_ACTION<P>,
+    {payload}: PAYLOAD_ACTION<any>,
   ) => {
-    const {body} = payload as {body: any};
+    const {body} = payload as any;
     let list = [];
     if (state.page > 1) {
-      list = (state.list || []).concat(
-        Array.isArray(body.data) ? body.data : [],
-      );
+      list = (state.list || []).concat(Array.isArray(body) ? body : []);
     } else {
-      list = Array.isArray(body.data) ? body.data : [];
+      list = Array.isArray(body) ? body : [];
     }
     state.isLoadingMore = false;
     state.refreshing = false;
     state.firstRender = true;
-    state.extraData = {...body.metadata};
+    state.extraData = {...payload?.metadata};
     state.isLoading = false;
     state.list = [...list];
     state.page = state.page + 1;

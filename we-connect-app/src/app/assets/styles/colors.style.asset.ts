@@ -130,7 +130,7 @@ const appColors: Record<ColorMode, ThemeColors> = {
       rippleColor: '#FFFFFF',
       placeHolderBg: '#2C2D2F',
       placeHolder: hexToRgbA('#FFFFFF', 0.5),
-      shadow: '#FFFFFF',
+      shadow: '#B0B1B2',
     },
   },
 };

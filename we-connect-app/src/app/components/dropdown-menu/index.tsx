@@ -137,7 +137,7 @@ const dropdownStyles = ({
       borderRadius: 16,
       shadowColor: shadowColor,
       shadowOffset: {width: 0, height: 20},
-      shadowOpacity: 0.08,
+      shadowOpacity: 0.15,
       shadowRadius: 50,
       elevation: 10,
       paddingVertical: 10,

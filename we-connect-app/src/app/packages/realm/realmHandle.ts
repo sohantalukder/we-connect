@@ -5,10 +5,18 @@ const RealmHandle = <P>(Model: any) => {
 
   return {
     // Get All Items
-    getAllProducts: () => realm.objects(Model),
+    getAll: () => realm.objects(Model),
 
     //Addition of Item
-    addProduct: (item: P | P[]) => {
+    add: (item: P | P[]) => {
+      if (Array.isArray(item)) {
+        realm.write(() => {
+          item.forEach((_item: P) => {
+            realm.create<P & Realm.Object>(Model, _item as P & Realm.Object);
+          });
+        });
+        return;
+      }
       realm.write(() => {
         realm.create<P & Realm.Object>(Model, item as P & Realm.Object);
       });
