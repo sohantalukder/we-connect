@@ -1,7 +1,7 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import {Colors} from '@styles/colors.style.asset';
-import {useTheme} from '@react-navigation/native';
+import {useNavigation, useTheme} from '@react-navigation/native';
 import ImagePreview from '@components/image-preview/Index.component';
 import {typographies} from '@styles/typographies.style.asset';
 import rs from '@styles/responsiveSize.style.asset';
@@ -9,15 +9,18 @@ import {customPadding, globalStyles} from '@styles/global.style.asset';
 import RippleButton from '@components/button/ripple/CustomRipple.c';
 import dayjs from 'dayjs';
 import {IChat} from '../interface';
+import {screens} from '@routes/routeName.routes';
 interface Props {
   item: IChat;
   index: number;
 }
 const ChatItem: React.FC<Props> = ({item}) => {
   const colors = useTheme().colors as Colors;
-  const {id, name, message, date, image, seen, total_message_unseen} = item;
+  const {name, message, date, image, seen, total_message_unseen} = item;
+  const navigation = useNavigation() as any;
   return (
-    <RippleButton onPress={() => console.log(id)}>
+    <RippleButton
+      onPress={() => navigation.navigate(screens.chatDetails, {item})}>
       <View
         style={[
           globalStyles.flexRow,

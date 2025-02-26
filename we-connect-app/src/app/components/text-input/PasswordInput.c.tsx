@@ -7,6 +7,7 @@ import {
   TextInput,
   TextInputProps,
   TextStyle,
+  useColorScheme,
   View,
   ViewStyle,
 } from 'react-native';
@@ -55,7 +56,8 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   labelStyle,
 }: PasswordInputProps) => {
   const colors = useTheme().colors as Colors;
-  const styles = inputStyles({rightIcon: <></>, leftIcon: <></>, colors});
+  const colorScheme = useColorScheme();
+  const styles = inputStyles({colors, mode: colorScheme});
   const [isShowPass, setIsShowPass] = useState(false);
   const containerRef = useRef<any>(null);
   const handleOnFocus = () => {
@@ -79,7 +81,8 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
     setIsShowPass(!isShowPass);
   };
   return (
-    <View style={[globalStyles.widthFull, wrapperStyle]}>
+    <View
+      style={[globalStyles.widthFull, globalStyles.flexShrink1, wrapperStyle]}>
       {label && (
         <Text
           style={[
@@ -91,9 +94,9 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
         </Text>
       )}
       <View style={[styles.container, style]} ref={containerRef}>
-        <View>{<LockIcon width={20} height={20} />}</View>
+        {<LockIcon width={20} height={20} />}
         <TextInput
-          style={[styles.input]}
+          style={styles.input}
           cursorColor={colors.primary}
           placeholderTextColor={colors.gray4}
           placeholder={placeholder}
@@ -110,15 +113,13 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
           onFocus={handleOnFocus}
           onBlur={handleOnBlur}
         />
-        <View style={[styles.leftIcon]}>
-          <Pressable onPress={toggleShowPass}>
-            {isShowPass === true ? (
-              <EyeOffIcon width={20} height={20} />
-            ) : (
-              <EyeOnIcon width={20} height={20} />
-            )}
-          </Pressable>
-        </View>
+        <Pressable onPress={toggleShowPass}>
+          {isShowPass === true ? (
+            <EyeOffIcon width={20} height={20} />
+          ) : (
+            <EyeOnIcon width={20} height={20} />
+          )}
+        </Pressable>
       </View>
     </View>
   );

@@ -7,5 +7,8 @@ interface IChat {
   seen: boolean;
   total_message_unseen: number;
 }
+interface ChatDetailsProps {
+  route: {params: {item: IChat}};
+}
 
-export type {IChat};
+export type {IChat, ChatDetailsProps};

@@ -33,8 +33,8 @@ interface GradientButtonProps {
 interface IconButtonProps {
   icon: ReactElement<IconProps>;
   onPress?: () => void;
-  bgColor?: string;
-  borderColor?: string;
+  bgColor?: ColorValue;
+  borderColor?: ColorValue;
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
   rippleColor?: ColorValue;

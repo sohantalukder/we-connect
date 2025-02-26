@@ -1,9 +1,9 @@
-import {View, ViewStyle} from 'react-native';
+import {useColorScheme, View, ViewStyle} from 'react-native';
 import React, {useRef, useState} from 'react';
 import {useTheme} from '@react-navigation/native';
 import {Colors} from '@styles/colors.style.asset';
 import {inputStyles} from '@components/text-input/styles/input.styles';
-import {customPadding} from '@styles/global.style.asset';
+import {customPadding, globalStyles} from '@styles/global.style.asset';
 import DownArrowIcon from '@icons/DownArrow.icon';
 import rs from '@styles/responsiveSize.style.asset';
 import {PhoneNumberInputProps} from '@components/text-input/interface/inputInterface';
@@ -21,7 +21,8 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 }) => {
   const phoneInput = useRef<RNPhoneInputRef>(null);
   const colors = useTheme().colors as Colors;
-  const styles = inputStyles({colors});
+  const colorScheme = useColorScheme();
+  const styles = inputStyles({colors, mode: colorScheme});
   const [isFocusStyle, setIsFocusStyle] = useState<ViewStyle | null>(null);
   const handleOnFocus = () => {
     setIsFocusStyle(styles.activeContainer);
@@ -31,6 +32,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
   };
   const handleOnChange = (text: string) => {
     phoneInput.current?.onChangeText({number: text});
+    setIsFocusStyle(styles.activeContainer);
     if (text.length > 7) {
       const isValidNumber = phoneInput.current?.isValidNumber(text);
       isValidNumber &&
@@ -42,7 +44,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
     }
   };
   return (
-    <View>
+    <View style={globalStyles.widthFull}>
       <RNPhoneInput
         ref={phoneInput}
         defaultValue={defaultValue}

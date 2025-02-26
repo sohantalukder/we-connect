@@ -2,6 +2,7 @@ import React from 'react';
 import IconButton from '../button/icon-button/IconButton.component';
 import {useNavigation, useTheme} from '@react-navigation/native';
 import {
+  ColorValue,
   StyleProp,
   StyleSheet,
   Text,
@@ -23,7 +24,7 @@ interface _props {
   text?: string;
   textStyle?: TextStyle;
   iconStyle?: ViewStyle;
-  iconFill?: string;
+  iconFill?: ColorValue;
   leftControl?: () => void;
   showLeft?: boolean;
   LeftIcon?: React.FC<IconProps>;
@@ -63,7 +64,12 @@ const Header: React.FC<_props> = ({
           }
         />
       )}
-      {text && <Text style={[styles(colors).text, textStyle]}>{text}</Text>}
+      {text && (
+        <Text
+          style={[styles(colors).text, textStyle, globalStyles.flexShrink1]}>
+          {text}
+        </Text>
+      )}
       <View>{rightComponent}</View>
     </View>
   );

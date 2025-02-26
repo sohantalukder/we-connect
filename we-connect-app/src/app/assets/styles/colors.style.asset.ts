@@ -27,6 +27,7 @@ interface Colors {
   gray7: ColorValue;
   gray8: ColorValue;
   gray9: ColorValue;
+  gray10: ColorValue;
   background: ColorValue;
   success1: ColorValue;
   success2: ColorValue;
@@ -73,6 +74,7 @@ const appColors: Record<ColorMode, ThemeColors> = {
       gray7: '#DDDDDE',
       gray8: '#E8E8E9',
       gray9: '#F4F4F4',
+      gray10: '#FAFAFA',
       background: '#FAFAFB',
       success1: '#3B8756',
       success2: '#CEFDD6',
@@ -114,6 +116,7 @@ const appColors: Record<ColorMode, ThemeColors> = {
       gray7: '#373839',
       gray8: '#2C2D2F',
       gray9: '#080402',
+      gray10: '#1F222A',
       background: '#080402',
       success1: '#3B8756',
       success2: '#CEFDD6',

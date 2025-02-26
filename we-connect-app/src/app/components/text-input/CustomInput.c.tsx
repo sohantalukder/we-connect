@@ -1,5 +1,11 @@
 import React, {useRef} from 'react';
-import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {
+  Text,
+  TextInput,
+  TouchableOpacity,
+  useColorScheme,
+  View,
+} from 'react-native';
 import {CustomInputProps} from './interface/inputInterface';
 import {useTheme} from '@react-navigation/native';
 import {Colors} from '@styles/colors.style.asset';
@@ -23,7 +29,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
   labelStyle,
 }) => {
   const colors = useTheme().colors as Colors;
-  const styles = inputStyles({rightIcon, leftIcon, colors});
+  const colorScheme = useColorScheme();
+  const styles = inputStyles({colors, mode: colorScheme});
   const containerRef = useRef<TextInput>(null);
   const handleOnChange = (text: string) => {
     if (name && name?.trim() !== '') {
@@ -43,7 +50,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
     });
   };
   return (
-    <View style={[globalStyles.widthFull, wrapperStyle]}>
+    <View
+      style={[globalStyles.widthFull, globalStyles.flexShrink1, wrapperStyle]}>
       {label && (
         <Text
           style={[

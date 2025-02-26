@@ -1,42 +1,43 @@
-import {IconProps} from '@entity-models/iconProps.types';
+import hexOpacityToColor from '@helper/utilities/hexOpacityToColor';
 import {Colors} from '@styles/colors.style.asset';
 import {fonts} from '@styles/fonts.style.asset';
 import {customPadding} from '@styles/global.style.asset';
-import {ReactElement} from 'react';
-import {StyleSheet} from 'react-native';
+import {ColorSchemeName, StyleSheet} from 'react-native';
 
 export const inputStyles = ({
-  leftIcon,
-  rightIcon,
   colors,
+  mode,
 }: {
-  rightIcon?: ReactElement<IconProps>;
-  leftIcon?: ReactElement<IconProps>;
   colors: Colors;
+  mode: ColorSchemeName;
 }) =>
   StyleSheet.create({
     container: {
       gap: 12,
       borderRadius: 16,
       borderWidth: 1,
-      borderColor: colors.gray8,
-      backgroundColor: colors.transparent,
+      borderColor: colors.transparent,
+      backgroundColor:
+        mode === 'dark' ? hexOpacityToColor(colors.gray10, 0.8) : colors.gray8,
       ...customPadding(0, 20, 0, 20),
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
+      flexShrink: 1,
     },
     multiLineContainer: {
       gap: 12,
       borderRadius: 16,
       borderWidth: 1,
-      borderColor: colors.gray8,
-      backgroundColor: colors.transparent,
+      borderColor: colors.transparent,
+      backgroundColor:
+        mode === 'dark' ? hexOpacityToColor(colors.gray10, 0.8) : colors.gray8,
       ...customPadding(0, 5, 0, 5),
       flexDirection: 'row',
     },
     activeContainer: {
       borderColor: colors.primary,
+      backgroundColor: hexOpacityToColor(colors.primary, 0.1),
     },
     errorContainer: {
       borderColor: colors.error1,
@@ -50,8 +51,6 @@ export const inputStyles = ({
       fontSize: 16,
       fontFamily: fonts.urbanist600,
       paddingVertical: 18,
-      paddingRight: rightIcon ? 12 : 0,
-      paddingLeft: leftIcon ? 8 : 0,
       flex: 1,
       textAlignVertical: 'center',
     },

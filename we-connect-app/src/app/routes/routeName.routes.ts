@@ -14,6 +14,7 @@ export enum screens {
   home = 'home',
   /* chats */
   chats = 'chats',
+  chatDetails = 'chat-details',
   /* status */
   status = 'status',
   /* calls */
