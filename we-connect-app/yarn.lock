@@ -6421,10 +6421,10 @@ rimraf@~2.6.2:
   dependencies:
     glob "^7.1.3"
 
-rn-phone-input-field@^0.1.8:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/rn-phone-input-field/-/rn-phone-input-field-0.1.8.tgz#75ffeb5825725890d8f60d8d104865265a5c7689"
-  integrity sha512-cHSua4gfSerZ9/zF/Ug7lWBi9PFU1HogM/+cy4frLtkQGmsKBFyX4rPl3jPAdJCZS+W+2tysyWz1cn5C8q/Vug==
+rn-phone-input-field@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/rn-phone-input-field/-/rn-phone-input-field-1.0.1.tgz#4f544ee019a1b7ac92f390f385c47087120e611d"
+  integrity sha512-uhWducNXg1XiHJJf6/NaJUlVM6+c8gzlKPWMcXHjbY8Gy+lixe/9JSZVoVub02LfIDpJOIavxQTBDlfDl00Esw==
 
 run-parallel@^1.1.9:
   version "1.2.0"

@@ -42,8 +42,8 @@ const LoginIndex: React.FC = () => {
   const navigation = useNavigation();
   return (
     <SplashContainer showHeader={true}>
-      <Header />
-      <KeyboardAvoidingView style={globalStyles.flex1} behavior="padding">
+      <KeyboardAvoidingView style={globalStyles.flex1}>
+        <Header />
         <ScrollView
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps={'always'}

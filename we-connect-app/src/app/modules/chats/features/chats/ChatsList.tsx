@@ -60,7 +60,7 @@ const ChatsList: React.FC = () => {
         )
       }
       onEndReachedThreshold={0.5}
-      onEndReached={onLoadMore}
+      onEndReached={hasMore ? onLoadMore : null}
       ListFooterComponent={
         hasMore ? <ActivityIndicator color={colors.primary} /> : null
       }

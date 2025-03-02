@@ -36,7 +36,7 @@
     "react-native-webview": "^13.12.5",
     "react-redux": "^9.2.0",
     "realm": "^12.14.0",
-    "rn-phone-input-field": "^0.1.8"
+    "rn-phone-input-field": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

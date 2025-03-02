@@ -8,8 +8,7 @@ import DownArrowIcon from '@icons/DownArrow.icon';
 import rs from '@styles/responsiveSize.style.asset';
 import {PhoneNumberInputProps} from '@components/text-input/interface/inputInterface';
 import {getCountry} from 'react-native-localize';
-import {CountryCode} from '@components/text-input/interface/countryCode';
-import RNPhoneInput, {RNPhoneInputRef} from 'rn-phone-input-field';
+import RNPhoneInput, {CountryCode, RNPhoneInputRef} from 'rn-phone-input-field';
 const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
   onChangeText,
   defaultCode = getCountry(),
@@ -31,9 +30,11 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
     setIsFocusStyle(null);
   };
   const handleOnChange = (text: string) => {
-    phoneInput.current?.onChangeText({number: text});
+    if (phoneInput.current?.onChangeText) {
+      phoneInput.current?.onChangeText(text);
+    }
     setIsFocusStyle(styles.activeContainer);
-    if (text.length > 7) {
+    if (text.length > 7 && phoneInput.current?.isValidNumber) {
       const isValidNumber = phoneInput.current?.isValidNumber(text);
       isValidNumber &&
         (onChangeText(text, name, isValidNumber),
@@ -58,12 +59,8 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
           style,
         ]}
         darkMode={true}
-        textContainerStyle={[
-          styles.input,
-          {backgroundColor: colors.transparent, paddingRight: rs(15)},
-        ]}
         textInputStyle={styles.phoneInput}
-        textInputProps={{
+        inputProps={{
           onFocus: handleOnFocus,
           onBlur: handleOnBlur,
           ...inputProps,

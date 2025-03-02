@@ -1,11 +1,11 @@
-import {FlatList, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import React from 'react';
 import Container from '@layouts/Container.layout';
 import Header from '@components/header/Header.component';
 import {ChatDetailsProps} from '@modules/chats/interface';
 import IconButton from '@components/button/icon-button/IconButton.component';
 import CallIcon from '@icons/Call.icon';
-import {globalStyles} from '@styles/global.style.asset';
+import {customPadding, globalStyles} from '@styles/global.style.asset';
 import rs from '@styles/responsiveSize.style.asset';
 import MoreCircleIcon from '@icons/MoreCircle.icon';
 import VideoIcon from '@icons/Video.icon';
@@ -18,6 +18,7 @@ import RecorderIcon from '@icons/Recorder.icon';
 import EmojiIcon from '@icons/Emoji.icon';
 import AttachmentIcon from '@icons/Attachment.icon';
 import {statusBar} from '@styles/properties.asset';
+import CustomFlatList from '@components/custom-flatList/CustomFlatList';
 const ChatOptions = () => {
   const colors = useTheme().colors as Colors;
   return (
@@ -34,7 +35,7 @@ const Footer = () => {
     <View
       style={[
         globalStyles.flexRow,
-        {gap: rs(10), padding: rs(20), paddingBottom: rs(40)},
+        {gap: rs(10), ...customPadding(5, 20, 40, 20)},
       ]}>
       <CustomInput
         onChangeText={() => {}}
@@ -72,13 +73,42 @@ const ChatDetails: React.FC<ChatDetailsProps> = ({
         rightComponent={<ChatOptions />}
         style={{
           backgroundColor: colors.primary,
-          paddingBottom: rs(10),
+          ...customPadding(0, 5, 10, 5),
         }}
       />
-      <FlatList
-        data={new Array(20).fill('')}
-        renderItem={() => (
-          <Text style={typographies(colors).bodyLargeBold}>Hello</Text>
+      <CustomFlatList
+        inverted
+        data={Array.from({length: 20}, (_, i) => ({id: i}))}
+        renderItem={({index}) => (
+          <View
+            style={[
+              globalStyles.widthFull,
+              {
+                alignItems: index % 2 !== 0 ? 'flex-start' : 'flex-end',
+              },
+            ]}>
+            <View
+              style={{
+                maxWidth: '85%',
+                borderRadius: 20,
+                ...customPadding(16, 20, 16, 20),
+                borderBottomRightRadius: index % 2 === 0 ? 8 : 20,
+                borderBottomLeftRadius: index % 2 !== 0 ? 8 : 20,
+                backgroundColor:
+                  index % 2 === 0 ? colors.primary : colors.gray7,
+              }}>
+              <Text
+                style={[
+                  typographies(colors).bodyMediumMedium,
+                  {color: index % 2 === 0 ? colors.white : colors.default1},
+                ]}>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptatum, aut. Commodi dolore sit beatae nostrum amet voluptas
+                harum, eum alias.
+              </Text>
+              <Text>09:41</Text>
+            </View>
+          </View>
         )}
       />
       <Footer />

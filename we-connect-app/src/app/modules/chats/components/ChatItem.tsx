@@ -31,8 +31,12 @@ const ChatItem: React.FC<Props> = ({item}) => {
           <ImagePreview source={{uri: image}} borderRadius={500} />
         </View>
         <View
-          style={[globalStyles.rowBetweenWithoutFlex, globalStyles.flexGrow1]}>
-          <View>
+          style={[
+            globalStyles.rowBetweenWithoutFlex,
+            globalStyles.flexGrow1,
+            globalStyles.flexShrink1,
+          ]}>
+          <View style={globalStyles.flexShrink1}>
             <Text
               numberOfLines={1}
               style={[typographies(colors).heading6, globalStyles.flexShrink1]}>
@@ -42,7 +46,6 @@ const ChatItem: React.FC<Props> = ({item}) => {
               numberOfLines={1}
               style={[
                 typographies(colors).bodyMediumMedium,
-                globalStyles.flexShrink1,
                 {marginTop: rs(4)},
               ]}>
               {message}
