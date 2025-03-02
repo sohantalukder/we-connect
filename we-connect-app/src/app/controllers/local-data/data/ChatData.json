@@ -7,7 +7,7 @@
     },
     "method": "POST",
     "success": true,
-    "message": "Got content list data",
+    "message": "Got chats list data",
     "data": [
       {
         "id": "1",

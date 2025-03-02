@@ -3,13 +3,13 @@ import {IUnformattedAPIResponse} from '@entity-models/api/apiResponse';
 import {sleepHook} from '@helper/hooks/sleep.hook';
 import dummyData from '@localData/dummyData';
 import {dummyDataFormat} from '@localData/dummyDataFormat';
-import ChatsModel from '@models/Chats.model';
-import {IChat} from '@modules/chats/interface';
+import CallsModel from '@models/Calls.model';
+import {ICallEntry} from '@modules/calls/interface';
 import RealmHandle from '@packages/realm/realmHandle';
 import {GETTING_PAYLOAD} from '@services/types';
 
-class ChatsServicesClass {
-  // :GET Chats list
+class CallsServicesClass {
+  // :GET Calls list
   async getList(payload?: GETTING_PAYLOAD) {
     const {page, perPage} = payload || {
       page: 1,
@@ -19,15 +19,17 @@ class ChatsServicesClass {
     if (config.development) {
       // for sleep 2 seconds
       // read data from local data
-      const object: IUnformattedAPIResponse<IChat[]> = {
-        ...dummyData.Chats['chats/list'],
+      const object: IUnformattedAPIResponse<ICallEntry[]> = {
+        ...dummyData.Calls['Calls/list'],
       };
       // get data from realm
-      const data = Array.from(RealmHandle<IChat[]>(ChatsModel).getAll() || []);
+      const data = Array.from(
+        RealmHandle<ICallEntry[]>(CallsModel).getAll() || [],
+      );
       if (data.length === 0) {
         await sleepHook(() => {}, 2000);
         // add data to realm
-        RealmHandle<IChat>(ChatsModel).add(object.data);
+        RealmHandle<ICallEntry>(CallsModel).add(object.data);
       }
       // format data and return
       return dummyDataFormat({
@@ -41,5 +43,5 @@ class ChatsServicesClass {
   }
 }
 
-const ChatsServices = new ChatsServicesClass();
-export default ChatsServices;
+const CallsServices = new CallsServicesClass();
+export default CallsServices;
