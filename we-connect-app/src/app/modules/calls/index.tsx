@@ -1,7 +1,7 @@
 import React from 'react';
 import MainHeader from '@components/header/MainHeader.c';
 import Container from '@layouts/Container.layout';
-import CallList from './features/CallList';
+import CallList from './features/call-list/CallList';
 
 const CallsIndex = () => {
   return (

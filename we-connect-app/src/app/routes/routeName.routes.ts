@@ -19,4 +19,6 @@ export enum screens {
   status = 'status',
   /* calls */
   calls = 'calls',
+  callInfo = 'call-info',
+  selectContact = 'select-contact',
 }

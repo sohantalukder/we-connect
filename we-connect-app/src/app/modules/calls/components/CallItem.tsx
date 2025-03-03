@@ -7,7 +7,7 @@ import {customPadding, globalStyles} from '@styles/global.style.asset';
 import dayjs from 'dayjs';
 import RippleButton from '@components/button/ripple/CustomRipple.c';
 import {Colors} from '@styles/colors.style.asset';
-import {useTheme} from '@react-navigation/native';
+import {useNavigation, useTheme} from '@react-navigation/native';
 import {typographies} from '@styles/typographies.style.asset';
 import IconButton from '@components/button/icon-button/IconButton.component';
 import VideoIcon from '@icons/Video.icon';
@@ -15,6 +15,7 @@ import CallBoldIcon from '@icons/CallBold.icon';
 import OutgoingBoldCallIcon from '@icons/OutgoingBoldCall.icon';
 import IncomingBoldCallIcon from '@icons/IncomingBoldCall.icon';
 import MissedBoldCallIcon from '@icons/MissedBoldCall.icon';
+import {screens} from '@routes/routeName.routes';
 interface props {
   index: number;
   item: ICallEntry;
@@ -22,6 +23,7 @@ interface props {
 const CallItem: React.FC<props> = ({item}) => {
   const {callType, date, id, image, name, totalMissed} = item;
   const colors = useTheme().colors as Colors;
+  const navigation = useNavigation() as any;
   const icon = {
     outgoing: {
       icon: (
@@ -42,7 +44,7 @@ const CallItem: React.FC<props> = ({item}) => {
   };
 
   return (
-    <RippleButton onPress={() => console.log(id)}>
+    <RippleButton onPress={() => navigation.navigate(screens.callInfo, {id})}>
       <View
         style={[
           globalStyles.rowBetween,
@@ -62,7 +64,12 @@ const CallItem: React.FC<props> = ({item}) => {
               <Text
                 numberOfLines={1}
                 style={typographies(colors).bodyMediumMedium}>
-                {dayjs(date).format('MMM DD')}, {dayjs(date).format('hh:mm A')}
+                {dayjs().isSame(dayjs(date), 'day')
+                  ? 'Today'
+                  : dayjs().subtract(1, 'day').isSame(dayjs(date), 'day')
+                  ? 'Yesterday'
+                  : dayjs(date).format('MMM DD')}
+                , {dayjs(date).format('hh:mm A')}
               </Text>
             </View>
           </View>

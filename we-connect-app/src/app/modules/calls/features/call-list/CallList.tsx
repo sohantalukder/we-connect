@@ -1,7 +1,7 @@
 import React from 'react';
 import CustomFlatList from '@components/custom-flatList/CustomFlatList';
-import CallItem from '../components/CallItem';
-import useCalls from '../hooks/useCalls.hook';
+import CallItem from '../../components/CallItem';
+import useCalls from '../../hooks/useCalls.hook';
 import {customPadding} from '@styles/global.style.asset';
 
 const CallList = () => {
