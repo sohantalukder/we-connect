@@ -20,7 +20,7 @@ class CallsServicesClass {
       // for sleep 2 seconds
       // read data from local data
       const object: IUnformattedAPIResponse<ICallEntry[]> = {
-        ...dummyData.Calls['Calls/list'],
+        ...dummyData.Calls['calls/list'],
       };
       // get data from realm
       const data = Array.from(

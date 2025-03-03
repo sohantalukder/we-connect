@@ -25,7 +25,7 @@ const ChatsList: React.FC = () => {
       contentContainerStyle={[
         list.length === 0 && [
           globalStyles.centerView,
-          {...customPadding(20, 0, 20, 0)},
+          {...customPadding(20, 20, 20, 20)},
         ],
       ]}
       keyboardDismissMode="on-drag"
