@@ -58,7 +58,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
           isFocusStyle,
           style,
         ]}
-        darkMode={true}
+        darkMode={colorScheme === 'dark' ? true : false}
         textInputStyle={styles.phoneInput}
         inputProps={{
           onFocus: handleOnFocus,
