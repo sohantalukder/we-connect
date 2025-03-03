@@ -1807,6 +1807,14 @@
     invariant "^2.2.4"
     nullthrows "^1.1.1"
 
+"@react-navigation/bottom-tabs@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@react-navigation/bottom-tabs/-/bottom-tabs-7.2.0.tgz#5b336b823226647a263b4fe743655462796b6aaf"
+  integrity sha512-1LxjgnbPyFINyf9Qr5d1YE0pYhuJayg5TCIIFQmbcX4PRhX7FKUXV7cX8OzrKXEdZi/UE/VNXugtozPAR9zgvA==
+  dependencies:
+    "@react-navigation/elements" "^2.2.5"
+    color "^4.2.3"
+
 "@react-navigation/core@^7.3.1":
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-7.3.1.tgz#c6d4857fa2dd321d12ca87e200478c38c420f157"
@@ -1826,15 +1834,6 @@
   integrity sha512-sDhE+W14P7MNWLMxXg1MEVXwkLUpMZJGflE6nQNzLmolJQIHgcia0Mrm8uRa3bQovhxYu1UzEojLZ+caoZt7Fg==
   dependencies:
     color "^4.2.3"
-
-"@react-navigation/material-top-tabs@^7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@react-navigation/material-top-tabs/-/material-top-tabs-7.1.0.tgz#6b414868645cf0d0336acab6232c8329018492ce"
-  integrity sha512-bTFgeHWZmkyE9CAVMTc+lw/b1n2ES3bk0JZoCNSTIrDP+tXfsS8CB4lpOhBybfX1q0C4NQ/i4qMlV7p1iO0eKA==
-  dependencies:
-    "@react-navigation/elements" "^2.2.5"
-    color "^4.2.3"
-    react-native-tab-view "^4.0.5"
 
 "@react-navigation/native@^7.0.14":
   version "7.0.14"
@@ -6061,6 +6060,11 @@ react-native-image-crop-picker@^0.41.6:
   resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.41.6.tgz#de2c00102f4c934848fa11ff2335f29f5dc6b3e3"
   integrity sha512-oyEVkiJX1cnjYJolQluOqXxz9xhLHrv+pyCs7+jA87yaa110/0jv1UCqxjVjxueKug7zk/UnjG7i9Ks1cGyLpA==
 
+react-native-localize@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-3.3.0.tgz#aa40c9e15262bd7295b4b73bc7fcb9b01c1afbf3"
+  integrity sha512-pbxiL0sL9hv3dRRcDRHEcsLGfuQavFfsK0dK5RNVjmTI8x3hiojRJHcppzqKOAUjZusehbA7Hnzdjz/7LkZsgw==
+
 react-native-reanimated@^3.16.5:
   version "3.16.5"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-3.16.5.tgz#2a411b9030a8659722a9398d2e0ea19bc076c846"
@@ -6099,13 +6103,6 @@ react-native-svg@^15.10.1:
     css-select "^5.1.0"
     css-tree "^1.1.3"
     warn-once "0.1.1"
-
-react-native-tab-view@^4.0.5:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-4.0.5.tgz#d12ec7dfd260c6acb247a401b3fc4abe6a3d466c"
-  integrity sha512-Xn3TpYo4yvKRC/f4+cOcvsXlitdnSaYkacshckrEI3JiDmFKNFIRVNxtZFggm4MwbJafq2RzuzR6xrgKoxgkTw==
-  dependencies:
-    use-latest-callback "^0.2.1"
 
 react-native-webview@^13.12.5:
   version "13.12.5"
@@ -6423,6 +6420,11 @@ rimraf@~2.6.2:
   integrity sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==
   dependencies:
     glob "^7.1.3"
+
+rn-phone-input-field@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/rn-phone-input-field/-/rn-phone-input-field-1.0.1.tgz#4f544ee019a1b7ac92f390f385c47087120e611d"
+  integrity sha512-uhWducNXg1XiHJJf6/NaJUlVM6+c8gzlKPWMcXHjbY8Gy+lixe/9JSZVoVub02LfIDpJOIavxQTBDlfDl00Esw==
 
 run-parallel@^1.1.9:
   version "1.2.0"

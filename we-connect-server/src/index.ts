@@ -1,11 +1,17 @@
 'use strict';
-import express, { Request, Response } from 'express';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
+import express, {Request, Response} from 'express';
+import configConstant from './constants/config.constant';
+import './configs/mongodb';
+import './configs/passport';
+import cors from 'cors';
+import passport from 'passport';
 const app = express();
-const port = process.env.PORT || 3000; // Add a fallback value in case `PORT` is undefined
+const port = configConstant.LOCALHOST_PORT;
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(passport.initialize());
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server is running.');

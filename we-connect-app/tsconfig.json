@@ -9,8 +9,11 @@
       "@icons/*": ["src/app/assets/icons/*"],
       "@images/*": ["src/app/assets/images/*"],
       "@styles/*": ["src/app/assets/styles/*"],
+      "@illustrations/*": ["src/app/assets/illustrations/*"],
       // Components: All common components (e.g.: Button, Modal, etc.)
       "@components/*": ["src/app/components/*"],
+      // lottie: All lottie related files (e.g.: Lottie animations etc.)
+      "@lottie/*": ["src/app/lottie/*"],
       // API: All API related files (e.g.: API calls, configurations, etc.)
       "@api/*": ["src/app/controllers/api*"],
       // Formatters: All Formatters related files (e.g.: Formatters etc.)
@@ -42,7 +45,9 @@
       // States: All redux states for application (e.g.: caching data etc.)
       "@states/*": ["src/app/states/*"],
       // Types: All commonly used types for application (e.g.: interfaces, enums etc.)
-      "@types/*": ["src/app/types/*"]
+      "@entity-models/*": ["src/app/entity-models/*"],
+      // Utils: All utility functions for application (e.g.: date, time, etc.)
+      "@/*": ["src/*"] // Root path
     }
   }
 }

@@ -1,27 +1,51 @@
 {
   "name": "we-connect",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc",
-    "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon src/index.ts\""
+    "start": "node dist/src/index.js",
+    "dev": "concurrently \"nodemon -r tsconfig-paths/register -r ts-node/register src/index.ts\""
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "we-connect",
+    "nodejs",
+    "express",
+    "typescript"
+  ],
+  "author": "mdtalukder.sohan@gmail.com",
   "license": "ISC",
-  "description": "",
+  "description": "A social media platform for developers",
   "dependencies": {
+    "async": "^3.2.6",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "express-session": "^1.18.1",
+    "express-validator": "^7.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.12.0",
+    "mongoose": "^8.9.2",
+    "nanoid": "^5.0.9",
+    "node-cron": "^3.0.3",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.2",
+    "@types/passport": "^1.0.17",
+    "@types/passport-jwt": "^4.0.1",
     "concurrently": "^9.1.0",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.2"
   }
 }
