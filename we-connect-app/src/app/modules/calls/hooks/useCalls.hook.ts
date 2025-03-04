@@ -10,7 +10,6 @@ const useCalls = () => {
   const dispatch = useDispatch();
   const {list, isLoading, firstRender, refreshing, hasMore, page, perPage} =
     useSelector(callsStates) as COMMON_STATE<ICallEntry>;
-  console.log(list);
   useLayoutEffect(() => {
     if (!firstRender) {
       InteractionManager.runAfterInteractions(() => {

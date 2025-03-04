@@ -19,6 +19,9 @@ import ImagePreview from '@components/image-preview/Index.component';
 import CallBoldIcon from '@icons/CallBold.icon';
 import VideoIcon from '@icons/Video.icon';
 import IncomingBoldCallIcon from '@icons/IncomingBoldCall.icon';
+import MessageBoldIcon from '@icons/MessageBold.icon';
+import hexOpacityToColor from '@helper/utilities/hexOpacityToColor';
+import NotificationIcon from '@icons/Notification.icon';
 const Options = () => {
   const colors = useTheme().colors as Colors;
   const openDropdown = () => {
@@ -77,34 +80,59 @@ const CallInfo = () => {
           ...customPadding(0, 5, 10, 5),
         }}
       />
-      <View
-        style={[globalStyles.rowBetween, {...customPadding(24, 24, 20, 24)}]}>
+      <View style={[{...customPadding(24, 24, 20, 24)}]}>
         <View
           style={[
-            globalStyles.flexRow,
             globalStyles.flexShrink1,
+            globalStyles.alignCenter,
             {gap: rs(10)},
           ]}>
-          <RippleButton borderRadius={500}>
-            <View style={{width: rs(60), height: rs(60)}}>
-              <ImagePreview
-                borderRadius={500}
-                source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}}
-              />
-            </View>
-          </RippleButton>
-          <View style={[globalStyles.flexShrink1, {gap: rs(2)}]}>
-            <Text style={typographies(colors).heading6} numberOfLines={2}>
+          <View style={{width: rs(60), height: rs(60)}}>
+            <ImagePreview
+              borderRadius={500}
+              source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}}
+            />
+          </View>
+          <View
+            style={[
+              globalStyles.flexShrink1,
+              globalStyles.alignCenter,
+              {gap: rs(2)},
+            ]}>
+            <Text style={[typographies(colors).heading5]} numberOfLines={2}>
               Md. Sohan Talukder Akash
             </Text>
-            <Text style={typographies(colors).bodyMediumMedium}>
+            <Text style={typographies(colors).bodyLargeMedium}>
               +1-202-555-0171
             </Text>
           </View>
         </View>
-        <View style={[globalStyles.flexRow, {gap: rs(0)}]}>
-          <IconButton icon={<CallBoldIcon fill={colors.primary} />} />
-          <IconButton icon={<VideoIcon fill={colors.primary} />} />
+        <View
+          style={[
+            globalStyles.flexRow,
+            globalStyles.activityCenter,
+            {...customPadding(20), gap: rs(16)},
+          ]}>
+          <IconButton
+            bgColor={hexOpacityToColor(colors.primary, 0.2)}
+            icon={
+              <MessageBoldIcon fill={colors.primary} height={24} width={24} />
+            }
+          />
+          <IconButton
+            bgColor={hexOpacityToColor(colors.primary, 0.2)}
+            icon={<CallBoldIcon fill={colors.primary} height={24} width={24} />}
+          />
+          <IconButton
+            bgColor={hexOpacityToColor(colors.primary, 0.2)}
+            icon={<VideoIcon fill={colors.primary} height={24} width={24} />}
+          />
+          <IconButton
+            bgColor={hexOpacityToColor(colors.primary, 0.2)}
+            icon={
+              <NotificationIcon fill={colors.primary} height={24} width={24} />
+            }
+          />
         </View>
       </View>
       <View
